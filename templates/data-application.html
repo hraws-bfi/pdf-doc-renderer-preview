@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Aplikasi (PDF)</title>
+
+  <style>
+    @page { size: A4; margin: 18mm 14mm 16mm; }
+
+    :root{
+      --text:#0f172a;
+      --muted:#64748b;
+      --bar:#f3f5f9;
+      --rule:#e8edf5;
+      --ok:#16a34a;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background:#fff;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+
+    /* Fixed header: FULL WIDTH of the physical page (ignores content margins).
+       Use negative offsets equal to @page margins so it spans edge-to-edge. */
+    .print-header{
+
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+
+      background:#fff;
+      border-bottom:1px solid var(--rule);
+
+      /* internal padding so title aligns nicely */
+      padding: 0 14mm 3mm; /* keep same as page side margins */
+      z-index: 999;
+    }
+
+    .print-header__title{
+      margin:0;
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    /* Start content below header */
+    .page{ padding-top: 20mm; }
+
+    .card{ margin:0 0 6mm; }
+    .titlebar{
+      background:var(--bar);
+      padding:4mm 6mm;
+      margin:0 0 4mm;
+    }
+    .titlebar--plain{
+      background:transparent;
+      padding:0 0 3mm;
+      margin:0 0 2mm;
+      border-top:1px dashed var(--rule);
+    }
+    .title{ margin:0; font-size:18px; font-weight:800; }
+
+    .grid{
+      display:grid;
+      gap:4.5mm 8mm;
+      padding:0 6mm;
+    }
+    .grid--4{ grid-template-columns:repeat(4, minmax(0,1fr)); }
+    .grid--3{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+
+    .field{ min-width:0; }
+    .label{
+      font-size:12.5px;
+      font-weight:700;
+      color:var(--muted);
+      margin:0 0 2mm;
+    }
+    .value{
+      font-size:13.5px;
+      font-weight:800;
+      color:#0b1220;
+      line-height:1.35;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      margin:0;
+    }
+    .value--ok{ color:var(--ok); font-weight:900; }
+
+    .divider{
+      height:0;
+      border-top:1px dashed var(--rule);
+      margin:4mm 6mm;
+    }
+
+    .stack{
+      padding:0 6mm;
+      display:grid;
+      gap:4.5mm;
+    }
+
+    .photo-wrap{ padding:0 6mm; }
+    .photo{
+      width:56mm;
+      height:auto;
+      display:block;
+      border-radius:2mm;
+    }
+
+    @media print{
+      .card{ break-inside:avoid; page-break-inside:avoid; }
+      img{ break-inside:avoid; }
+    }
+
+    /* Optional screen preview only */
+    @media screen{
+      body{ background:#eef2f7; padding:12px; }
+      .sheet{
+        max-width:210mm;
+        margin:0 auto;
+        background:#fff;
+        padding:18mm 14mm 16mm;
+        box-shadow:0 10px 30px rgba(2,6,23,.12);
+        position:relative;
+      }
+      /* Keep header full viewport width even in preview */
+      .print-header{ left:0; right:0; top:0; }
+      /* In preview the padding is already on .sheet; avoid double offset feel */
+      .page{ padding-top: 22mm; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="print-header" aria-hidden="true">
+    <h1 class="print-header__title">Data Aplikasi</h1>
+  </header>
+
+  <div class="sheet">
+    <main class="page">
+      <section class="card">
+        <div class="titlebar"><h2 class="title">Detail Info</h2></div>
+        <div class="grid grid--4">
+          <div class="field"><div class="label">Lead ID</div><p class="value">123456789</p></div>
+          <div class="field"><div class="label">Nama Perusahaan</div><p class="value">PT Surya Sandjaya</p></div>
+          <div class="field"><div class="label">Tanggal Lead Dibuat</div><p class="value">123456789</p></div>
+          <div class="field"><div class="label">Status</div><p class="value">Proses Persetujuan</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="titlebar"><h2 class="title">Detail Perusahaan</h2></div>
+        <div class="grid grid--4">
+          <div class="field"><div class="label">Nama Perusahaan</div><p class="value">PT Surya Sandjaya</p></div>
+          <div class="field"><div class="label">Jenis Badan Usaha</div><p class="value">BUMS</p></div>
+          <div class="field"><div class="label">Sektor Ekonomi</div><p class="value">Ekonomi</p></div>
+          <div class="field"><div class="label">Tipe Industri</div><p class="value">Travel</p></div>
+
+          <div class="field"><div class="label">Nomor Telepon Perusahaan</div><p class="value">+62 872 3790 1234</p></div>
+          <div class="field"><div class="label">Nomor NPWP Perusahaan</div><p class="value">123456789</p></div>
+          <div class="field"><div class="label">Tipe NPWP</div><p class="value">NPWP</p></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="stack">
+          <div class="field">
+            <div class="label">Alamat Perusahaan</div>
+            <p class="value">
+              Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2,
+              Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322
+            </p>
+          </div>
+          <div class="field">
+            <div class="label">Alamat Detail Perusahaan</div>
+            <p class="value">Samping Pos Ronda</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="titlebar titlebar--plain"><h2 class="title">Foto NPWP</h2></div>
+        <div class="photo-wrap">
+          <img class="photo" src="https://via.placeholder.com/380x240.png?text=Foto+NPWP" alt="Foto NPWP" />
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="titlebar"><h2 class="title">Detail PIC</h2></div>
+        <div class="grid grid--4">
+          <div class="field"><div class="label">Nama PIC</div><p class="value">Jonathan Debis</p></div>
+          <div class="field"><div class="label">Jabatan PIC</div><p class="value">Manager</p></div>
+          <div class="field"><div class="label">Nomor KTP PIC</div><p class="value">312029920112910</p></div>
+          <div class="field"><div class="label">Tempat Lahir PIC</div><p class="value">312029920112910</p></div>
+
+          <div class="field"><div class="label">Tanggal Lahir PIC</div><p class="value">17 Mei 1978</p></div>
+          <div class="field"><div class="label">Jenis Kelamin PIC</div><p class="value">Laki - Laki</p></div>
+          <div class="field"><div class="label">Nomor Telepon PIC</div><p class="value">08131223456</p></div>
+          <div class="field"><div class="label">Email PIC</div><p class="value">Jonathan.Debis@gmail.com</p></div>
+
+          <div class="field"><div class="label">Status Pernikahan PIC</div><p class="value">Tidak Kawin</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="titlebar"><h2 class="title">Pengecekan Negative List PIC</h2></div>
+        <div class="grid grid--3">
+          <div class="field"><div class="label">Waktu Pengecekan</div><p class="value">16 Desember 2024</p></div>
+          <div class="field"><div class="label">NIK</div><p class="value">123456781234567890</p></div>
+          <div class="field"><div class="label">Cek Negativ List</div><p class="value value--ok">Clean</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="titlebar"><h2 class="title">Pengecekan Pefindo PIC</h2></div>
+        <div class="grid grid--4">
+          <div class="field"><div class="label">Waktu Pengecekan</div><p class="value">16 Desember 2024</p></div>
+          <div class="field"><div class="label">Lead ID</div><p class="value">123456</p></div>
+          <div class="field"><div class="label">NIK</div><p class="value">123456781234567890</p></div>
+          <div class="field"><div class="label">Status Pengecekan</div><p class="value value--ok">Clean</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
