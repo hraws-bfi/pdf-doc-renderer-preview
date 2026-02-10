@@ -1,99 +1,99 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Go Template Previewer</title>
-    <style>
-      body { margin: 0; font-family: system-ui, sans-serif; }
-      .wrap { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
-      .left { display: grid; grid-template-rows: 2fr 1fr auto; border-right: 1px solid #ddd; }
-      textarea { width: 100%; height: 100%; box-sizing: border-box; padding: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
-      .bar { padding: 8px 12px; border-top: 1px solid #ddd; display: flex; gap: 8px; align-items: center; }
-      .err { color: #b00020; font-size: 12px; white-space: pre-wrap; }
-      iframe { width: 100%; height: 100%; border: 0; }
-      .right { display: grid; grid-template-rows: auto 1fr; }
-      .hint { padding: 8px 12px; border-bottom: 1px solid #ddd; font-size: 12px; color: #444; }
-    </style>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="api-banner" id="apiBanner">
+      <span>⚠️ API server is unavailable. Please start the backend server on port 8080.</span>
+    </div>
+    
     <div class="wrap">
       <div class="left">
-        <textarea id="tpl"></textarea>
-        <textarea id="vars"></textarea>
+        <!-- Template Editor -->
+        <div class="editor-wrap tpl">
+          <div class="editor-header">
+            <span>Template (HTML/Go)</span>
+            <button id="formatTpl">Format</button>
+          </div>
+          <div id="tplEditor"></div>
+        </div>
+        
+        <!-- Variables Editor -->
+        <div class="editor-wrap vars">
+          <div class="editor-header">
+            <span>Variables (JSON)</span>
+            <button id="formatVars">Format</button>
+          </div>
+          <div id="varsEditor"></div>
+        </div>
+        
+        <!-- Action Bar -->
         <div class="bar">
-          <button id="render">Render</button>
-          <label><input type="checkbox" id="auto" checked /> Auto-render</label>
+          <div class="bar-group">
+            <button id="render" class="btn-secondary">Render</button>
+            <label><input type="checkbox" id="auto" checked /> Auto-render</label>
+          </div>
+          <div class="bar-group">
+            <input type="text" id="templateName" placeholder="Template name (e.g. data-application)" />
+            <button id="save" class="btn-primary">Save Template</button>
+            <span id="saveStatus" class="save-status"></span>
+          </div>
           <div id="status" class="err"></div>
         </div>
       </div>
 
+      <!-- Preview Panel -->
       <div class="right">
-        <div class="hint">Preview (rendered HTML in sandboxed iframe)</div>
-        <iframe id="preview" sandbox="allow-same-origin"></iframe>
+        <div class="hint">
+          <span>Preview (rendered HTML in sandboxed iframe)</span>
+          <div class="hint-buttons">
+            <button id="downloadPdf" class="btn-pdf">Download PDF</button>
+            <button id="openUploadModal" class="btn-dms">Upload to DMS</button>
+          </div>
+        </div>
+        <iframe id="preview" sandbox="allow-same-origin" title="Rendered HTML preview"></iframe>
       </div>
     </div>
 
-    <script type="module">
-      const tpl = document.querySelector("#tpl");
-      const vars = document.querySelector("#vars");
-      const renderBtn = document.querySelector("#render");
-      const auto = document.querySelector("#auto");
-      const status = document.querySelector("#status");
-      const preview = document.querySelector("#preview");
+    <!-- Upload to DMS Modal -->
+    <div class="modal-overlay" id="uploadModal">
+      <div class="modal">
+        <h3>Upload Template to DMS</h3>
+        <div class="modal-field">
+          <label>Template File</label>
+          <select id="dmsFilename"></select>
+        </div>
+        <div class="modal-field">
+          <label>Reference ID (UUID)</label>
+          <input type="text" id="dmsRefId" placeholder="e.g. 550e8400-e29b-41d4-a716-446655440000" />
+        </div>
+        <div class="modal-field">
+          <label>ID Type</label>
+          <input type="text" id="dmsIdType" value="template" />
+        </div>
+        <div class="modal-field">
+          <label>Document Type</label>
+          <input type="text" id="dmsDocType" value="html" />
+        </div>
+        <div class="modal-field">
+          <label>Source System</label>
+          <input type="text" id="dmsSourceSystem" value="LORA" />
+        </div>
+        <div class="modal-field">
+          <label>Document Sequence</label>
+          <input type="text" id="dmsDocSequence" value="1" />
+        </div>
+        <div class="modal-actions">
+          <button class="btn-cancel" id="closeUploadModal">Cancel</button>
+          <button class="btn-upload" id="uploadToDMS">Upload</button>
+        </div>
+      </div>
+    </div>
 
-      tpl.value = `<html><body style="font-family: Arial">
-  <h1>Contract {{.contract_number}}</h1>
-  <p>Name: {{.customer.name}}</p>
-</body></html>`;
-
-      vars.value = JSON.stringify({
-        contract_number: "FIN-2024-001",
-        customer: { name: "John Doe" }
-      }, null, 2);
-
-      let t;
-      function debounceRender() {
-        clearTimeout(t);
-        t = setTimeout(doRender, 200);
-      }
-
-      async function doRender() {
-        status.textContent = "";
-        let data;
-        try {
-          data = JSON.parse(vars.value || "{}");
-        } catch (e) {
-          status.textContent = "JSON error: " + e.message;
-          return;
-        }
-
-        const res = await fetch("http://localhost:8080/render/html", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ template: tpl.value, data })
-        });
-
-        const payload = await res.json().catch(() => ({}));
-        if (!res.ok) {
-          status.textContent = payload.error || ("Render failed (" + res.status + ")");
-          // Optional: show error in iframe too
-          preview.srcdoc = `<pre style="color:#b00020;white-space:pre-wrap">${escapeHtml(status.textContent)}</pre>`;
-          return;
-        }
-
-        preview.srcdoc = payload.html ?? "";
-      }
-
-      function escapeHtml(s) {
-        return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
-      }
-
-      renderBtn.addEventListener("click", doRender);
-      tpl.addEventListener("input", () => auto.checked && debounceRender());
-      vars.addEventListener("input", () => auto.checked && debounceRender());
-
-      doRender();
-    </script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

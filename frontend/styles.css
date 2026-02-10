@@ -1,0 +1,318 @@
+/* Base */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* API Status Banner */
+.api-banner {
+  display: none;
+  background: #dc2626;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.api-banner.show {
+  display: block;
+}
+
+.api-banner span {
+  margin-right: 8px;
+}
+
+/* Layout */
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.right {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* Bottom Bar */
+.bar {
+  padding: 8px 12px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bar-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.bar input[type="text"] {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 200px;
+}
+
+.bar button {
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.bar .btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+}
+
+.bar .btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.bar .btn-secondary {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+}
+
+.bar .btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+.save-status {
+  font-size: 12px;
+  color: #16a34a;
+}
+
+/* Editor Header */
+.editor-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e1e1e;
+  color: #ccc;
+}
+
+.editor-header span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.editor-header button {
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+  background: #333;
+  color: #ccc;
+  border: 1px solid #555;
+  border-radius: 3px;
+}
+
+.editor-header button:hover {
+  background: #444;
+}
+
+/* Editor Wrap */
+.editor-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.editor-wrap.tpl {
+  max-height: 60vh;
+}
+
+.editor-wrap.vars {
+  flex: 0.5;
+}
+
+#tplEditor,
+#varsEditor {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* CodeMirror */
+.cm-editor {
+  height: 100%;
+}
+
+.cm-editor .cm-scroller {
+  overflow: auto !important;
+}
+
+/* Error Display */
+.err {
+  color: #b00020;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+/* Preview */
+.hint {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  color: #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hint button {
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+
+.hint .btn-pdf {
+  background: #3b82f6;
+  color: white;
+}
+
+.hint .btn-pdf:hover {
+  background: #2563eb;
+}
+
+.hint .btn-pdf:disabled {
+  background: #9ca3af;
+  cursor: wait;
+}
+
+.hint .btn-dms {
+  background: #10b981;
+  color: white;
+}
+
+.hint .btn-dms:hover {
+  background: #059669;
+}
+
+.hint-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 400px;
+  max-width: 90vw;
+}
+
+.modal h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+}
+
+.modal-field {
+  margin-bottom: 12px;
+}
+
+.modal-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.modal-field input,
+.modal-field select {
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-actions .btn-cancel {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+}
+
+.modal-actions .btn-upload {
+  background: #10b981;
+  color: white;
+  border: none;
+}
+
+.modal-actions .btn-upload:hover {
+  background: #059669;
+}
+
+.modal-actions .btn-upload:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Disabled state for API offline */
+.api-offline button:not(.btn-cancel) {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.api-offline input {
+  opacity: 0.7;
+}

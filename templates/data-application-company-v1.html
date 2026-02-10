@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Aplikasi (PDF)</title>
+    <style>
+      @page { size: A4; margin: 14mm; }
+      :root{
+      --text:#0f172a;
+      --muted:#64748b;
+      --bar:#f3f5f9;
+      --rule:#e8edf5;
+      --ok:#16a34a;
+      --pill:#e8f4ff;
+      --pill-border:#b7ddff;
+      --pill-text:#1f4c7a;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ height:100%; }
+      body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background:#fff;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+      }
+      .doc-header{
+      padding: 6mm 0 3mm;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 6mm;
+      }
+      .doc-title{
+      margin:0;
+      text-align:center;
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:.2px;
+      }
+      .card{ margin:0 0 6mm; }
+      .titlebar{
+      background:var(--bar);
+      padding:4mm 6mm;
+      margin:0 0 4mm;
+      }
+      .titlebar--plain{
+      background:transparent;
+      padding:0 0 3mm;
+      margin:0 0 2mm;
+      border-top:1px dashed var(--rule);
+      }
+      .title{ margin:0; font-size:18px; font-weight:800; }
+      .grid{
+      display:grid;
+      gap:4.5mm 8mm;
+      padding:0 6mm;
+      }
+      .grid--4{ grid-template-columns:repeat(4, minmax(0,1fr)); }
+      .grid--3{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+      .field{ min-width:0; }
+      .label{
+      font-size:12.5px;
+      font-weight:700;
+      color:var(--muted);
+      margin:0 0 2mm;
+      }
+      .value{
+      font-size:13.5px;
+      font-weight:800;
+      color:#0b1220;
+      line-height:1.35;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      margin:0;
+      }
+      .value--ok{ color:var(--ok); font-weight:900; }
+      .divider{
+      height:0;
+      border-top:1px dashed var(--rule);
+      margin:4mm 6mm;
+      }
+      .stack{
+      padding:0 6mm;
+      display:grid;
+      gap:4.5mm;
+      }
+      .photo-wrap{ padding:0 6mm; }
+      .photo{ width:56mm; height:auto; display:block; border-radius:2mm; }
+      .photo-grid{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6mm;
+      align-items:start;
+      }
+      .photo-grid__img{ width:100%; height:auto; display:block; border-radius:2mm; }
+      .photo-grid__img--small{ width:56mm; max-width:100%; }
+      .subhead{
+      padding: 0 6mm;
+      margin: 0 0 3mm;
+      font-size: 14px;
+      font-weight: 800;
+      }
+      .rule{
+      height:1px;
+      background: var(--rule);
+      margin: 0 6mm 4mm;
+      }
+      .page{ width:100%; }
+      .page + .page{ break-before: page; page-break-before: always; }
+      .row-head{
+      padding: 0 6mm;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:6mm;
+      margin: 0 0 3mm;
+      }
+      .badge{
+      font-size:12.5px;
+      font-weight:800;
+      color:var(--pill-text);
+      background:var(--pill);
+      border:1px solid var(--pill-border);
+      padding: 2mm 4mm;
+      border-radius: 999px;
+      white-space:nowrap;
+      }
+      .photo-row-3{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10mm;
+      align-items:start;
+      }
+      .photo-block__title{
+      margin:0 0 3mm;
+      font-size:14px;
+      font-weight:800;
+      color:#0b1220;
+      }
+      .photo-block__img{
+      width:56mm;
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:2mm;
+      }
+      /* Page 5: statement item spacing */
+      .statement-item{
+      padding: 0 6mm;
+      margin: 0 0 6mm;
+      }
+      .statement-item__title{
+      margin: 0 0 3mm;
+      font-size: 14px;
+      font-weight: 800;
+      color:#0b1220;
+      }
+      /* Page 9: document grids */
+      .doc-grid-2{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10mm;
+      align-items:start;
+      }
+      .doc-grid-3{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10mm;
+      align-items:start;
+      }
+      .doc-card{
+      min-width:0;
+      }
+      .doc-card__toplabel{
+      margin:0 0 2mm;
+      font-size:12.5px;
+      font-weight:700;
+      color:var(--muted);
+      }
+      .doc-card__topvalue{
+      margin:0 0 3mm;
+      font-size:13.5px;
+      font-weight:800;
+      color:#0b1220;
+      }
+      .doc-card__title{
+      margin:0 0 4mm;
+      font-size:14px;
+      font-weight:800;
+      color:#0b1220;
+      }
+      @media print{
+      .card{ break-inside:avoid; page-break-inside:avoid; }
+      img{ break-inside:avoid; }
+      }
+      @media screen{
+      body{ background:#eef2f7; padding:12px; }
+      .sheet{
+      max-width:210mm;
+      margin:0 auto;
+      background:#fff;
+      padding:14mm;
+      box-shadow:0 10px 30px rgba(2,6,23,.12);
+      }
+      .sheet + .sheet{ margin-top: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- PAGE 1 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Detail Info</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Lead ID</div>
+              <p class="value">{{.lead_id}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama Perusahaan</div>
+              <p class="value">PT Surya Sandjaya</p>
+            </div>
+            <div class="field">
+              <div class="label">Tanggal Lead Dibuat</div>
+              <p class="value">123456789</p>
+            </div>
+            <div class="field">
+              <div class="label">Status</div>
+              <p class="value">Proses Persetujuan</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Detail Perusahaan</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Nama Perusahaan</div>
+              <p class="value">PT Surya Sandjaya</p>
+            </div>
+            <div class="field">
+              <div class="label">Jenis Badan Usaha</div>
+              <p class="value">BUMS</p>
+            </div>
+            <div class="field">
+              <div class="label">Sektor Ekonomi</div>
+              <p class="value">Ekonomi</p>
+            </div>
+            <div class="field">
+              <div class="label">Tipe Industri</div>
+              <p class="value">Travel</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Telepon Perusahaan</div>
+              <p class="value">+62 872 3790 1234</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor NPWP Perusahaan</div>
+              <p class="value">123456789</p>
+            </div>
+            <div class="field">
+              <div class="label">Tipe NPWP</div>
+              <p class="value">NPWP</p>
+            </div>
+          </div>
+          <div class="divider">
+          </div>
+          <div class="stack">
+            <div class="field">
+              <div class="label">Alamat Perusahaan</div>
+              <p class="value">
+                Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2,
+                Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322
+              </p>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail Perusahaan</div>
+              <p class="value">Samping Pos Ronda</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar titlebar--plain">
+            <h2 class="title">Foto NPWP</h2>
+          </div>
+          <div class="photo-wrap">
+            <img class="photo" src="https://placehold.co/380x240?text=Foto+NPWP" alt="Foto NPWP" />
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Detail PIC</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Nama PIC</div>
+              <p class="value">Jonathan Debis</p>
+            </div>
+            <div class="field">
+              <div class="label">Jabatan PIC</div>
+              <p class="value">Manager</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor KTP PIC</div>
+              <p class="value">312029920112910</p>
+            </div>
+            <div class="field">
+              <div class="label">Tempat Lahir PIC</div>
+              <p class="value">312029920112910</p>
+            </div>
+            <div class="field">
+              <div class="label">Tanggal Lahir PIC</div>
+              <p class="value">17 Mei 1978</p>
+            </div>
+            <div class="field">
+              <div class="label">Jenis Kelamin PIC</div>
+              <p class="value">Laki - Laki</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Telepon PIC</div>
+              <p class="value">08131223456</p>
+            </div>
+            <div class="field">
+              <div class="label">Email PIC</div>
+              <p class="value">Jonathan.Debis@gmail.com</p>
+            </div>
+            <div class="field">
+              <div class="label">Status Pernikahan PIC</div>
+              <p class="value">Tidak Kawin</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Pengecekan Negative List PIC</h2>
+          </div>
+          <div class="grid grid--3">
+            <div class="field">
+              <div class="label">Waktu Pengecekan</div>
+              <p class="value">16 Desember 2024</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK</div>
+              <p class="value">123456781234567890</p>
+            </div>
+            <div class="field">
+              <div class="label">Cek Negativ List</div>
+              <p class="value value--ok">Clean</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Pengecekan Pefindo PIC</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Waktu Pengecekan</div>
+              <p class="value">16 Desember 2024</p>
+            </div>
+            <div class="field">
+              <div class="label">Lead ID</div>
+              <p class="value">123456</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK</div>
+              <p class="value">123456781234567890</p>
+            </div>
+            <div class="field">
+              <div class="label">Status Pengecekan</div>
+              <p class="value value--ok">Clean</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- PAGE 2 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Aset</h2>
+          </div>
+          <h3 class="subhead">Aset 1</h3>
+          <div class="rule">
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Merek</div>
+              <p class="value">Honda</p>
+            </div>
+            <div class="field">
+              <div class="label">Model</div>
+              <p class="value">SUV</p>
+            </div>
+            <div class="field">
+              <div class="label">Tipe</div>
+              <p class="value">RS</p>
+            </div>
+            <div class="field">
+              <div class="label">Tahun</div>
+              <p class="value">2020</p>
+            </div>
+            <div class="field">
+              <div class="label">OTR Showroom</div>
+              <p class="value">Rp 150.000.000</p>
+            </div>
+            <div class="field">
+              <div class="label">PL BFI</div>
+              <p class="value">Rp 140.000.000</p>
+            </div>
+            <div class="field">
+              <div class="label">Cek 3 Harga</div>
+              <p class="value">-</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Pengecekan RAPINDO</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Waktu Pengecekan</div>
+              <p class="value">16 Desember 2024</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Rangka</div>
+              <p class="value">123456781234567890</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Mesin</div>
+              <p class="value">098765432</p>
+            </div>
+            <div class="field">
+              <div class="label">Hasil Cek</div>
+              <p class="value">Tidak Digunakan Sebagai Jaminan</p>
+            </div>
+          </div>
+        </section>
+        <div class="divider">
+        </div>
+        <section class="card">
+          <div class="titlebar titlebar--plain">
+            <h2 class="title">Foto Stock Unit</h2>
+          </div>
+          <div class="photo-grid">
+            <img class="photo-grid__img" src="https://placehold.co/220x160?text=Foto+1" alt="Foto Stock Unit 1" />
+            <img class="photo-grid__img" src="https://placehold.co/220x160?text=Foto+2" alt="Foto Stock Unit 2" />
+            <img class="photo-grid__img" src="https://placehold.co/220x160?text=Foto+3" alt="Foto Stock Unit 3" />
+            <img class="photo-grid__img" src="https://placehold.co/220x160?text=Foto+4" alt="Foto Stock Unit 4" />
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar titlebar--plain">
+            <h2 class="title">Surat Keterangan Lunas</h2>
+          </div>
+          <div class="photo-wrap">
+            <img class="photo photo-grid__img--small" src="https://placehold.co/380x240?text=Surat+Keterangan+Lunas" alt="Surat Keterangan Lunas" />
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- PAGE 3 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Owner</h2>
+          </div>
+          <h3 class="subhead">Owner 1</h3>
+          <div class="rule">
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Nama (selain debitur)</div>
+              <p class="value">Dohyun Wang</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK</div>
+              <p class="value">12345676543</p>
+            </div>
+            <div class="field">
+              <div class="label">Hubungan</div>
+              <p class="value">Teman</p>
+            </div>
+            <div class="field">
+              <div class="label">Pembagian Saham</div>
+              <p class="value">10%</p>
+            </div>
+            <div class="field">
+              <div class="label">Jenis Kelamin</div>
+              <p class="value">Laki - Laki</p>
+            </div>
+            <div class="field">
+              <div class="label">Jabatan</div>
+              <p class="value">Owner</p>
+            </div>
+            <div class="field">
+              <div class="label">Tempat Lahir</div>
+              <p class="value">Tangerang</p>
+            </div>
+            <div class="field">
+              <div class="label">Tanggal Lahir</div>
+              <p class="value">20 Okt 2025</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Telepon</div>
+              <p class="value">08131223456</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor NPWP Perusahaan</div>
+              <p class="value">654323567</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor NPWP</div>
+              <p class="value">12346789</p>
+            </div>
+            <div class="field">
+              <div class="label">Status Pernikahan</div>
+              <p class="value">Kawin</p>
+            </div>
+          </div>
+          <div class="stack" style="margin-top:4mm;">
+            <div class="field">
+              <div class="label">Alamat Owner</div>
+              <p class="value">
+                Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2,
+                Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322
+              </p>
+            </div>
+            <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+              <div class="field">
+                <div class="label">RT</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">RW</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">Kode Pos</div>
+                <p class="value">16963</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail</div>
+              <p class="value">Jalan Utama</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Pengecekan Negative List Owner 1</h2>
+          </div>
+          <div class="grid grid--3">
+            <div class="field">
+              <div class="label">Waktu Pengecekan</div>
+              <p class="value">16 Desember 2024</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK</div>
+              <p class="value">123456781234567890</p>
+            </div>
+            <div class="field">
+              <div class="label">Cek Negativ List</div>
+              <p class="value value--ok">Clean</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Pengecekan Pefindo Owner 1</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Waktu Pengecekan</div>
+              <p class="value">16 Desember 2024</p>
+            </div>
+            <div class="field">
+              <div class="label">Lead ID</div>
+              <p class="value">123456</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK</div>
+              <p class="value">123456781234567890</p>
+            </div>
+            <div class="field">
+              <div class="label">Status Pengecekan</div>
+              <p class="value value--ok">Clean</p>
+            </div>
+          </div>
+        </section>
+        <div class="divider">
+        </div>
+        <section class="card">
+          <div class="titlebar titlebar--plain">
+            <h2 class="title">Foto KTP</h2>
+          </div>
+          <div class="photo-wrap">
+            <img class="photo" src="https://placehold.co/380x240?text=Foto+KTP" alt="Foto KTP" />
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- PAGE 4 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Showroom</h2>
+          </div>
+          <div class="row-head">
+            <h3 class="subhead" style="padding:0; margin:0;">Showroom 1</h3>
+            <span class="badge">Main Showroom</span>
+          </div>
+          <div class="rule">
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Jenis Showroom</div>
+              <p class="value">Perorangan</p>
+            </div>
+            <div class="field">
+              <div class="label">Is PKD</div>
+              <p class="value">Yes</p>
+            </div>
+            <div class="field">
+              <div class="label">Jumlah Karyawan</div>
+              <p class="value">10</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama Showroom</div>
+              <p class="value">Moladin</p>
+            </div>
+            <div class="field">
+              <div class="label">Persona Showroom</div>
+              <p class="value">Persona 1</p>
+            </div>
+            <div class="field">
+              <div class="label">Lama Usaha</div>
+              <p class="value">18 Bulan</p>
+            </div>
+            <div class="field">
+              <div class="label">Kategori Showroom</div>
+              <p class="value">Silver</p>
+            </div>
+            <div class="field">
+              <div class="label">Kriteria</div>
+              <p class="value">Sobat Potency</p>
+            </div>
+          </div>
+          <div class="stack" style="margin-top:4mm;">
+            <div class="field">
+              <div class="label">Alamat Showroom</div>
+              <p class="value">
+                Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2,
+                Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322
+              </p>
+            </div>
+            <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+              <div class="field">
+                <div class="label">RT</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">RW</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">Kode Pos</div>
+                <p class="value">16963</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail</div>
+              <p class="value">Jalan Utama</p>
+            </div>
+          </div>
+        </section>
+        <div class="divider">
+        </div>
+        <section class="card">
+          <div class="photo-row-3">
+            <div class="photo-block">
+              <h3 class="photo-block__title">Foto Selfie Shoroom</h3>
+              <img class="photo-block__img" src="https://placehold.co/380x240?text=Foto+Selfie+Showroom" alt="Foto Selfie Showroom" />
+            </div>
+            <div class="photo-block">
+              <h3 class="photo-block__title">Foto Bengkel Showroom</h3>
+              <img class="photo-block__img" src="https://placehold.co/380x240?text=Foto+Bengkel+Showroom" alt="Foto Bengkel Showroom" />
+            </div>
+            <div class="photo-block">
+              <h3 class="photo-block__title">Foto Showroom</h3>
+              <img class="photo-block__img" src="https://placehold.co/380x240?text=Foto+Showroom" alt="Foto Showroom" />
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- ===================== PAGE 5 ===================== -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <!-- Daftar Bank & Rekening -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Bank &amp; Rekening</h2>
+          </div>
+          <!-- Detail Bank -->
+          <section class="card" style="margin:0 0 6mm;">
+            <div class="titlebar">
+              <h2 class="title">Detail Bank</h2>
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Nama Bank</div>
+                <p class="value">BCA</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor Rekening</div>
+                <p class="value">1234567</p>
+              </div>
+              <div class="field">
+                <div class="label">Nama Pemilik Rekening</div>
+                <p class="value">Zaire Schleifer</p>
+              </div>
+              <div class="field">
+                <div class="label">Status Rekening</div>
+                <p class="value value--ok">Akun Bank tervalidasi</p>
+              </div>
+            </div>
+            <div class="stack" style="margin-top:4mm;">
+              <div class="field">
+                <div class="label">Status Judol</div>
+                <p class="value value--ok">No Rekening ini tidak tercatat sebagai judi online</p>
+              </div>
+            </div>
+          </section>
+          <!-- Daftar Rekening Koran -->
+          <section class="card" style="margin:0;">
+            <div class="titlebar">
+              <h2 class="title">Daftar Rekening Koran</h2>
+            </div>
+            <!-- Item 1 -->
+            <div class="statement-item">
+              <div class="grid grid--4" style="padding:0;">
+                <div class="field">
+                  <div class="label">Saldo Awal</div>
+                  <p class="value">Rp 950,000,000</p>
+                </div>
+                <div class="field">
+                  <div class="label">Tahun</div>
+                  <p class="value">2024</p>
+                </div>
+                <div class="field">
+                  <div class="label">Bulan</div>
+                  <p class="value">Januari</p>
+                </div>
+                <div class="field">
+                  <div class="label">Mutasi Debit / Bulan</div>
+                  <p class="value">Rp 200,000,000</p>
+                </div>
+                <div class="field">
+                  <div class="label">Mutasi Kredit / Bulan</div>
+                  <p class="value">Rp 200,000,000</p>
+                </div>
+                <div class="field">
+                  <div class="label">Saldo Akhir</div>
+                  <p class="value">Rp 550,000,000</p>
+                </div>
+              </div>
+              <h3 class="statement-item__title" style="margin-top:4mm;">Bukti Rekening Koran</h3>
+              <img class="photo" src="https://placehold.co/380x240?text=Bukti+Rekening+Koran" alt="Bukti Rekening Koran Januari" />
+            </div>
+            <div class="divider">
+            </div>
+            <!-- Item 2 -->
+            <div class="statement-item" style="margin-bottom:0;">
+              <div class="grid grid--4" style="padding:0;">
+                <div class="field">
+                  <div class="label">Saldo Awal</div>
+                  <p class="value">Rp 950,000,000</p>
+                </div>
+                <div class="field">
+                  <div class="label">Tahun</div>
+                  <p class="value">2024</p>
+                </div>
+                <div class="field">
+                  <div class="label">Bulan</div>
+                  <p class="value">Februari</p>
+                </div>
+                <div class="field">
+                  <div class="label">Mutasi Debit / Bulan</div>
+                  <p class="value">Rp 200,000,000</p>
+                </div>
+                <div class="field">
+                  <div class="label">Mutasi Kredit / Bulan</div>
+                  <p class="value">Rp 200,000,000</p>
+                </div>
+                <div class="field">
+                  <div class="label">Saldo Akhir</div>
+                  <p class="value">Rp 550,000,000</p>
+                </div>
+              </div>
+              <h3 class="statement-item__title" style="margin-top:4mm;">Bukti Rekening Koran</h3>
+              <img class="photo" src="https://placehold.co/380x240?text=Bukti+Rekening+Koran" alt="Bukti Rekening Koran Februari" />
+            </div>
+          </section>
+        </section>
+        <!-- Average -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Average</h2>
+          </div>
+          <div class="grid grid--3">
+            <div class="field">
+              <div class="label">Average Mutasi Debit</div>
+              <p class="value">Rp 400,000,000</p>
+            </div>
+            <div class="field">
+              <div class="label">Average Mutasi Kredit</div>
+              <p class="value">Rp 400,000,000</p>
+            </div>
+            <div class="field">
+              <div class="label">Average Saldo Akhir</div>
+              <p class="value">Rp 1.100,000,000</p>
+            </div>
+          </div>
+        </section>
+        <!-- Screenshot shows another "Detail Bank" starting at bottom; include as next section stub -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Detail Bank</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Nama Bank</div>
+              <p class="value">-</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Rekening</div>
+              <p class="value">-</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama Pemilik Rekening</div>
+              <p class="value">-</p>
+            </div>
+            <div class="field">
+              <div class="label">Status Rekening</div>
+              <p class="value">-</p>
+            </div>
+          </div>
+        </section>
+      </main>
+      <main>
+        <!-- Ringkasan Akun Bank -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Ringkasan Akun Bank</h2>
+          </div>
+          <div class="bank-summary">
+            <!-- Row 1 -->
+            <div class="bank-summary__row">
+              <div class="bank-summary__top">
+                <div class="field">
+                  <div class="label">Bank</div>
+                  <p class="value">BCA</p>
+                </div>
+                <div class="field">
+                  <div class="label">Nomor Rekening</div>
+                  <p class="value">1234567</p>
+                </div>
+                <div class="field">
+                  <div class="label">Nama Pemilik Rekening</div>
+                  <p class="value">Zaire Schleifer</p>
+                </div>
+                <div class="field">
+                  <div class="label">Average Mutasi Debit</div>
+                  <p class="value">Rp 200,000,000</p>
+                </div>
+              </div>
+              <div class="bank-summary__bottom">
+                <div class="label">Average Mutasi Kredit</div>
+                <p class="value">Rp 200,000,000</p>
+              </div>
+            </div>
+            <!-- Row 2 -->
+            <div class="bank-summary__row">
+              <div class="bank-summary__top">
+                <div class="field">
+                  <div class="label">Bank</div>
+                  <p class="value">Mandiri</p>
+                </div>
+                <div class="field">
+                  <div class="label">Nomor Rekening</div>
+                  <p class="value">9876545678</p>
+                </div>
+                <div class="field">
+                  <div class="label">Nama Pemilik Rekening</div>
+                  <p class="value">Jaydon Mango</p>
+                </div>
+                <div class="field">
+                  <div class="label">Average Mutasi Debit</div>
+                  <p class="value">Rp 200,000,000</p>
+                </div>
+              </div>
+              <div class="bank-summary__bottom">
+                <div class="label">Average Mutasi Kredit</div>
+                <p class="value">Rp 200,000,000</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Grand Total Average -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Grand Total Average</h2>
+          </div>
+          <div class="grid grid--3">
+            <div class="field">
+              <div class="label">Grand Total Average Mutasi Debit</div>
+              <p class="value">Rp 200,000,000</p>
+            </div>
+            <div class="field">
+              <div class="label">Grand Total Average Mutasi Kredit</div>
+              <p class="value">Rp 200,000,000</p>
+            </div>
+            <div class="field">
+              <div class="label">Grand Total Average Saldo Akhir</div>
+              <p class="value">Rp 200,000,000</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <!-- Data Plafon -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Plafon</h2>
+          </div>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="label">Request plafond amount</div>
+              <p class="value">Rp 100.000.000</p>
+            </div>
+          </div>
+        </section>
+        <!-- Background Showroom -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Background Showroom</h2>
+          </div>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="label">Sebelum Usaha Showroom</div>
+              <p class="value">Saya bekerja sebagai pegawai</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Awal usaha Showroom</div>
+              <p class="value">Saya punya 2 mobil untuk di jual</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Perkembangan Showroom</div>
+              <p class="value">2022 saya sewa ruko</p>
+            </div>
+          </div>
+        </section>
+        <!-- Operational Showroom -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Operational Showroom</h2>
+          </div>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="label">Source Pembelian Stok Unit</div>
+              <p class="value">OLX</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Quality Control pembelian stock unit</div>
+              <p class="value">OLX</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Maintenance unit</div>
+              <p class="value">Setahun Sekali</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Pemasaran unit</div>
+              <p class="value">Online</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Management &amp; Planning Stock</div>
+              <p class="value">Saya punya 5 buah</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <!-- Daftar Kontak Darurat -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Kontak Darurat</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Hubungan Dengan Debitur</div>
+              <p class="value">Orang Tua</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama (selain debitur)</div>
+              <p class="value">Charlie Vaccaro</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK Kontak Darurat</div>
+              <p class="value">128453467834</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Telepon</div>
+              <p class="value">+62 724242 1234</p>
+            </div>
+          </div>
+          <div class="stack" style="margin-top:4mm;">
+            <div class="field">
+              <div class="label">Alamat Owner</div>
+              <p class="value">
+                Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2,
+                Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322
+              </p>
+            </div>
+            <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+              <div class="field">
+                <div class="label">RT</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">RW</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">Kode Pos</div>
+                <p class="value">16963</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail</div>
+              <p class="value">Jalan Utama</p>
+            </div>
+          </div>
+        </section>
+        <!-- Alamat Penagihan -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Alamat Penagihan</h2>
+          </div>
+          <div class="stack">
+            <div class="field">
+              <div class="label">Alamat Owner</div>
+              <p class="value">
+                Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2,
+                Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322
+              </p>
+            </div>
+            <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+              <div class="field">
+                <div class="label">RT</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">RW</div>
+                <p class="value">003</p>
+              </div>
+              <div class="field">
+                <div class="label">Kode Pos</div>
+                <p class="value">16963</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail</div>
+              <p class="value">Jalan Utama</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <!-- Data Legalitas -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Legalitas</h2>
+          </div>
+          <div class="stack">
+            <div class="field">
+              <div class="label">Sumber Modal Kerja</div>
+              <p class="value">Saudara</p>
+            </div>
+          </div>
+          <div class="doc-grid-2" style="margin-top:6mm;">
+            <div class="doc-card">
+              <h3 class="doc-card__title">Surat Persetujuan RUPS (sesuai Anggaran Dasar)</h3>
+              <img class="pdf-icon" src="https://placehold.co/180x180?text=PDF" alt="Dokumen PDF" />
+            </div>
+            <div class="doc-card">
+              <h3 class="doc-card__title">Fotocopy Pengesahan Menteri Kehakiman</h3>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen" alt="Dokumen Pengesahan" />
+            </div>
+          </div>
+        </section>
+        <!-- Data Keuangan (3 Bulan Terakhir) -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Keuangan (3 Bulan Terakhir)</h2>
+          </div>
+          <div class="doc-grid-3">
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">January</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+Keuangan" alt="Dokumen Keuangan 1" />
+            </div>
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">January</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+Keuangan" alt="Dokumen Keuangan 2" />
+            </div>
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">January</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+Keuangan" alt="Dokumen Keuangan 3" />
+            </div>
+          </div>
+        </section>
+        <!-- Data Penjualan (3 Bulan Terakhir) -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Penjualan (3 Bulan Terakhir)</h2>
+          </div>
+          <div class="doc-grid-3">
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">January</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+Penjualan" alt="Dokumen Penjualan 1" />
+            </div>
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">January</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+Penjualan" alt="Dokumen Penjualan 2" />
+            </div>
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">January</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+Penjualan" alt="Dokumen Penjualan 3" />
+            </div>
+          </div>
+        </section>
+        <!-- Dokumen Tambahan -->
+        <section class="card" style="margin-bottom:0;">
+          <div class="titlebar">
+            <h2 class="title">Dokumen Tambahan</h2>
+          </div>
+          <div class="doc-grid-3">
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Tipe</div>
+              <div class="doc-card__topvalue">NPWP</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+NPWP" alt="Dokumen NPWP 1" />
+            </div>
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Tipe</div>
+              <div class="doc-card__topvalue">NPWP</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen+NPWP" alt="Dokumen NPWP 2" />
+            </div>
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Tipe</div>
+              <div class="doc-card__topvalue">&nbsp;</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="https://placehold.co/380x240?text=Dokumen" alt="Dokumen Tambahan" />
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
