@@ -17,6 +17,24 @@ import (
 	"time"
 )
 
+// templateFuncMap provides custom functions for Go templates
+var templateFuncMap = template.FuncMap{
+	// Safe content functions
+	"safeURL":  func(s string) template.URL { return template.URL(s) },
+	"safeHTML": func(s string) template.HTML { return template.HTML(s) },
+	"safeCSS":  func(s string) template.CSS { return template.CSS(s) },
+	// Math functions
+	"add": func(a, b int) int { return a + b },
+	"sub": func(a, b int) int { return a - b },
+	"mul": func(a, b int) int { return a * b },
+	"div": func(a, b int) int {
+		if b == 0 {
+			return 0
+		}
+		return a / b
+	},
+}
+
 // handleRenderHTML handles POST /render/html - renders a Go template with data
 func handleRenderHTML(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodOptions {
@@ -44,14 +62,17 @@ func handleRenderHTML(w http.ResponseWriter, r *http.Request) {
 		req.Data = map[string]interface{}{}
 	}
 
-	tmpl, err := template.New("preview").Option("missingkey=default").Parse(req.Template)
+	// Auto-convert URL-like strings to safe URLs (for base64 images, etc.)
+	safeData := sanitizeDataForTemplate(req.Data)
+
+	tmpl, err := template.New("preview").Funcs(templateFuncMap).Option("missingkey=default").Parse(req.Template)
 	if err != nil {
 		writeJSON(w, http.StatusBadRequest, RenderResponse{Error: "template parse error: " + err.Error()})
 		return
 	}
 
 	var buf bytes.Buffer
-	if err := tmpl.Execute(&buf, req.Data); err != nil {
+	if err := tmpl.Execute(&buf, safeData); err != nil {
 		writeJSON(w, http.StatusBadRequest, RenderResponse{Error: "template execute error: " + err.Error()})
 		return
 	}
@@ -309,15 +330,18 @@ func handleRenderPDF(w http.ResponseWriter, r *http.Request) {
 		req.Data = map[string]interface{}{}
 	}
 
+	// Auto-convert URL-like strings to safe URLs (for base64 images, etc.)
+	safeData := sanitizeDataForTemplate(req.Data)
+
 	// Parse and execute Go template
-	tmpl, err := template.New("pdf").Option("missingkey=default").Parse(req.Template)
+	tmpl, err := template.New("pdf").Funcs(templateFuncMap).Option("missingkey=default").Parse(req.Template)
 	if err != nil {
 		writeJSON(w, http.StatusBadRequest, RenderResponse{Error: "template parse error: " + err.Error()})
 		return
 	}
 
 	var buf bytes.Buffer
-	if err := tmpl.Execute(&buf, req.Data); err != nil {
+	if err := tmpl.Execute(&buf, safeData); err != nil {
 		writeJSON(w, http.StatusBadRequest, RenderResponse{Error: "template execute error: " + err.Error()})
 		return
 	}
@@ -325,7 +349,7 @@ func handleRenderPDF(w http.ResponseWriter, r *http.Request) {
 	htmlContent := buf.String()
 
 	// Generate PDF using chromedp
-	pdfBytes, err := generatePDF(htmlContent)
+	pdfBytes, err := generatePDF(htmlContent, req.WaitAfterLoad)
 	if err != nil {
 		writeJSON(w, http.StatusInternalServerError, RenderResponse{Error: "pdf generation error: " + err.Error()})
 		return

@@ -1,0 +1,104 @@
+{
+  "lead_id": "LD-001",
+  "company": {
+    "phone_number": "628123123123",
+    "company_name": "PT Surya Sandjaya",
+    "legal_address": "RT 001, RW 001, Karang Anyar, Sawah Besar, Jakarta Pusat, DKI Jakarta, 10740",
+    "address_detail": "Asdasdsadasd Asdasd",
+    "npwp_document_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+    "pic": {
+      "name": "Ignacio Ferry",
+      "email": "testing@gmail.com",
+      "phone_number": "62811110151050",
+      "position_name": "Manager",
+      "id_number": "6644435402911705",
+      "birth_place": "BLITAR",
+      "birth_date": "2026-01-25",
+      "gender": "Laki-laki",
+      "marital_status": "S"
+    }
+  },
+  "npwp_number": "029904939344856",
+  "npwp_type_name": "SP-NPWP",
+  "created_at": "2026-01-15T15:10:45.086646Z",
+  "status": "Menunggu Persetujuan",
+  "industry_group_name": "Perseroan Terbatas",
+  "economy_sector_name": "INDUSTRI/MANUFACTURING",
+  "industry_name": "KENDARAAN BERMOTOR RODA EMPAT ATAU LEBIH",
+  "credit_checking": {
+    "checked_at": "2026-02-10T02:15:01Z",
+    "negative": {
+      "pic": {
+        "status": "Clean"
+      }
+    },
+    "pefindo": {
+      "pic": {
+        "status": "Clean"
+      }
+    }
+  },
+  "assets": [
+    {
+      "index": 1,
+      "brand_name": "DAIHATSU",
+      "model_name": "AYLA",
+      "variant_code": "DAIHATSU.AYLA.D10AT",
+      "variant_name": "D 1.0 AT",
+      "manufacturing_year": 2019,
+      "showroom_otr": 80000000,
+      "pl_bfi": 78000000,
+      "chassis_number": "MHFXW1820FK123456",
+      "engine_number": "K20C1234567",
+      "rapindo": {
+        "result": "Tidak Digunakan Sebagai Jaminan",
+        "checked_at": "2026-01-15T15:10:45.086646Z"
+      },
+      "stock_unit_photo_1": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "stock_unit_photo_2": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "stock_unit_photo_3": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "stock_unit_photo_4": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "payment_receipt_document": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTggMC41SDcyQzc2LjE0MjEgMC41IDc5LjUgMy44NTc4NiA3OS41IDhWNzJDNzkuNSA3Ni4xNDIxIDc2LjE0MjEgNzkuNSA3MiA3OS41SDhDMy44NTc4NiA3OS41IDAuNSA3Ni4xNDIxIDAuNSA3MlY4QzAuNTAwMDAxIDMuODU3ODcgMy44NTc4NyAwLjUgOCAwLjVaIiBmaWxsPSIjRDlERUU0Ii8+CjxwYXRoIGQ9Ik04IDAuNUg3MkM3Ni4xNDIxIDAuNSA3OS41IDMuODU3ODYgNzkuNSA4VjcyQzc5LjUgNzYuMTQyMSA3Ni4xNDIxIDc5LjUgNzIgNzkuNUg4QzMuODU3ODYgNzkuNSAwLjUgNzYuMTQyMSAwLjUgNzJWOEMwLjUwMDAwMSAzLjg1Nzg3IDMuODU3ODcgMC41IDggMC41WiIgc3Ryb2tlPSIjRUZGN0ZGIi8+CjxwYXRoIGQ9Ik0zMCAyMEMyOC42MjUgMjAgMjcuNSAyMS4xMjUgMjcuNSAyMi41VjU3LjVDMjcuNSA1OC44NzUgMjguNjI1IDYwIDMwIDYwSDU1QzU2LjM3NSA2MCA1Ny41IDU4Ljg3NSA1Ny41IDU3LjVWMzBMNDcuNSAyMEgzMFoiIGZpbGw9IiNFMkU1RTciLz4KPHBhdGggZD0iTTUwIDMwSDU3LjVMNDcuNSAyMFYyNy41QzQ3LjUgMjguODc1IDQ4LjYyNSAzMCA1MCAzMFoiIGZpbGw9IiNCMEI3QkQiLz4KPHBhdGggZD0iTTU3LjUgMzcuNUw1MCAzMEg1Ny41VjM3LjVaIiBmaWxsPSIjQ0FEMUQ4Ii8+CjxwYXRoIGQ9Ik01Mi41IDUyLjVDNTIuNSA1My4xODc1IDUxLjkzNzUgNTMuNzUgNTEuMjUgNTMuNzVIMjMuNzVDMjMuMDYyNSA1My43NSAyMi41IDUzLjE4NzUgMjIuNSA1Mi41VjQwQzIyLjUgMzkuMzEyNSAyMy4wNjI1IDM4Ljc1IDIzLjc1IDM4Ljc1SDUxLjI1QzUxLjkzNzUgMzguNzUgNTIuNSAzOS4zMTI1IDUyLjUgNDBWNTIuNVoiIGZpbGw9IiNGMTU2NDIiLz4KPHBhdGggZD0iTTI3Ljk0OTIgNDMuNjgzMkMyNy45NDkyIDQzLjM1MzIgMjguMjA5MiA0Mi45OTMyIDI4LjYyOCA0Mi45OTMySDMwLjkzNjdDMzIuMjM2NyA0Mi45OTMyIDMzLjQwNjcgNDMuODYzMiAzMy40MDY3IDQ1LjUzMDdDMzMuNDA2NyA0Ny4xMTA3IDMyLjIzNjcgNDcuOTkwNyAzMC45MzY3IDQ3Ljk5MDdIMjkuMjY4VjQ5LjMxMDdDMjkuMjY4IDQ5Ljc1MDcgMjguOTg4IDQ5Ljk5OTQgMjguNjI4IDQ5Ljk5OTRDMjguMjk4IDQ5Ljk5OTQgMjcuOTQ5MiA0OS43NTA3IDI3Ljk0OTIgNDkuMzEwN1Y0My42ODMyWk0yOS4yNjggNDQuMjUxOVY0Ni43NDE5SDMwLjkzNjdDMzEuNjA2NyA0Ni43NDE5IDMyLjEzNjcgNDYuMTUwNyAzMi4xMzY3IDQ1LjUzMDdDMzIuMTM2NyA0NC44MzE5IDMxLjYwNjcgNDQuMjUxOSAzMC45MzY3IDQ0LjI1MTlIMjkuMjY4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTM1LjM2MzggNDkuOTk5M0MzNS4wMzM4IDQ5Ljk5OTMgMzQuNjczOCA0OS44MTkzIDM0LjY3MzggNDkuMzgwNVY0My43MDNDMzQuNjczOCA0My4zNDQzIDM1LjAzMzggNDMuMDgzIDM1LjM2MzggNDMuMDgzSDM3LjY1MjZDNDIuMjIwMSA0My4wODMgNDIuMTIwMSA0OS45OTkzIDM3Ljc0MjYgNDkuOTk5M0gzNS4zNjM4Wk0zNS45OTM4IDQ0LjMwM1Y0OC43ODA1SDM3LjY1MjZDNDAuMzUxMyA0OC43ODA1IDQwLjQ3MTMgNDQuMzAzIDM3LjY1MjYgNDQuMzAzSDM1Ljk5MzhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDMuNzQxMSA0NC4zODMzVjQ1Ljk3Mkg0Ni4yODk4QzQ2LjY0OTggNDUuOTcyIDQ3LjAwOTggNDYuMzMyIDQ3LjAwOTggNDYuNjgwOEM0Ny4wMDk4IDQ3LjAxMDggNDYuNjQ5OCA0Ny4yODA4IDQ2LjI4OTggNDcuMjgwOEg0My43NDExVjQ5LjM3OTVDNDMuNzQxMSA0OS43Mjk1IDQzLjQ5MjMgNDkuOTk4MyA0My4xNDIzIDQ5Ljk5ODNDNDIuNzAyMyA0OS45OTgzIDQyLjQzMzYgNDkuNzI5NSA0Mi40MzM2IDQ5LjM3OTVWNDMuNzAyQzQyLjQzMzYgNDMuMzQzMyA0Mi43MDM2IDQzLjA4MiA0My4xNDIzIDQzLjA4Mkg0Ni42NTExQzQ3LjA5MTEgNDMuMDgyIDQ3LjM1MTEgNDMuMzQzMyA0Ny4zNTExIDQzLjcwMkM0Ny4zNTExIDQ0LjAyMiA0Ny4wOTExIDQ0LjM4MiA0Ni42NTExIDQ0LjM4Mkg0My43NDExVjQ0LjM4MzNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTEuMjUgNTMuNzVIMjcuNVY1NUg1MS4yNUM1MS45Mzc1IDU1IDUyLjUgNTQuNDM3NSA1Mi41IDUzLjc1VjUyLjVDNTIuNSA1My4xODc1IDUxLjkzNzUgNTMuNzUgNTEuMjUgNTMuNzVaIiBmaWxsPSIjQ0FEMUQ4Ii8+Cjwvc3ZnPgo="
+    },
+    {
+      "index": 2,
+      "brand_name": "DAIHATSU",
+      "model_name": "AYLA",
+      "variant_code": "DAIHATSU.AYLA.D10AT",
+      "variant_name": "D 1.0 AT",
+      "manufacturing_year": 2019,
+      "showroom_otr": 80000000,
+      "pl_bfi": 78000000,
+      "chassis_number": "MHFXW1820FK123456",
+      "engine_number": "K20C1234567",
+      "rapindo": {
+        "result": "Aktif Sebagai Jaminan",
+        "checked_at": "2026-01-15T15:10:45.086646Z"
+      },
+      "stock_unit_photo_1": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "stock_unit_photo_2": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "stock_unit_photo_3": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "stock_unit_photo_4": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+    }
+  ],
+  "owners": [{
+    "index": 1,
+    "name": "ZETTA NIENOW",
+    "nik": "1671076103800007",
+    "position_name": "Owner",
+    "phone_number": "6281284907886",
+    "relationship_name": "Teman",
+    "share_percentage": "10%",
+    "gender": "Laki - Laki",
+    "birth_date": "1999-02-01",
+    "birth_place": "Jakarta",
+    "npwp_number": "1671076103800007",
+    "marital_status_name": "Belum Menikah",
+    "legal_address": "Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2, Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322",
+    "rt": "003",
+    "rw": "015",
+    "postal_code": "16963",
+    "address_detail": "Jalan Utama"
+}],
+  "showrooms": []
+}

@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Aplikasi (PDF)</title>
+    <style>
+      @page { size: A4; margin: 14mm; }
+      :root{
+      --text:#0f172a;
+      --muted:#64748b;
+      --bar:#f3f5f9;
+      --rule:#e8edf5;
+      --ok:#16a34a;
+      --pill:#e8f4ff;
+      --pill-border:#b7ddff;
+      --pill-text:#1f4c7a;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ height:100%; }
+      body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+      }
+      .doc-header{
+      padding: 6mm 0 3mm;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 6mm;
+      }
+      .doc-title{
+      margin:0;
+      text-align:center;
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:.2px;
+      }
+      .card{ margin:0 0 6mm; }
+      .margin-top-6{ margin-top: 6mm !important}
+      .titlebar{
+      background:var(--bar);
+      padding:4mm 6mm;
+      margin:0 0 4mm;
+      }
+      .titlebar--plain{
+      background:transparent;
+      padding:4px 6mm 3mm;
+      margin:0 0 2mm;
+      border-top:1px dashed var(--rule);
+      }
+      .title{ margin:0; font-size:18px; font-weight:800; }
+      .grid{
+      display:grid;
+      gap:4.5mm 8mm;
+      padding:0 6mm;
+      }
+      .grid--4{ grid-template-columns:repeat(4, minmax(0,1fr)); }
+      .grid--3{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+      .field{ min-width:0; }
+      .label{
+      font-size:12.5px;
+      font-weight:700;
+      color:var(--muted);
+      margin:0 0 2mm;
+      }
+      .value{
+      font-size:13.5px;
+      font-weight:800;
+      color:#0b1220;
+      line-height:1.35;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      margin:0;
+      }
+      .value--ok{ color:var(--ok); font-weight:900; }
+      .divider{
+      height:0;
+      border-top:1px dashed var(--rule);
+      margin:4mm 6mm;
+      }
+      .stack{
+      padding:0 6mm;
+      display:grid;
+      gap:4.5mm;
+      }
+      .photo-wrap{ margin-left: 6mm }
+      .photo{ width:56mm; height:auto; display:block; border-radius:2mm;  }
+      .photo-grid{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6mm;
+      align-items:start;
+      }
+      .photo-grid__img{ width:100%; height:auto; display:block; border-radius:2mm; }
+      .photo-grid__img--small{ width:48mm; max-width:100%; }
+      .subhead{
+      padding: 0 6mm;
+      margin: 0 0 3mm;
+      font-size: 14px;
+      font-weight: 800;
+      }
+      .rule{
+      height:1px;
+      background: var(--rule);
+      margin: 0 6mm 4mm;
+      }
+      .page{ width:100%; }
+      .page + .page{ break-before: page; page-break-before: always; }
+      .row-head{
+      padding: 0 6mm;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:6mm;
+      margin: 0 0 3mm;
+      }
+      .badge{
+      font-size:12.5px;
+      font-weight:800;
+      color:var(--pill-text);
+      background:var(--pill);
+      border:1px solid var(--pill-border);
+      padding: 2mm 4mm;
+      border-radius: 999px;
+      white-space:nowrap;
+      }
+      .photo-row-3{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10mm;
+      align-items:start;
+        break-inside: auto;
+  page-break-inside: auto;
+      }
+      .photo-block__title{
+      margin:0 0 3mm;
+      font-size:14px;
+      font-weight:800;
+      color:#0b1220;
+      }
+      .photo-block__img{
+      width:56mm;
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:2mm;
+      }
+      /* Page 5: statement item spacing */
+      .statement-item{
+      padding: 0 6mm;
+      margin: 0 0 6mm;
+      }
+      .statement-item__title{
+      margin: 0 0 3mm;
+      font-size: 14px;
+      font-weight: 800;
+      color:#0b1220;
+      }
+      /* Page 9: document grids */
+      .doc-grid-2{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10mm;
+      align-items:start;
+      }
+      .doc-grid-3{
+      padding:0 6mm;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10mm;
+      align-items:start;
+      }
+      .doc-card{
+      min-width:0;
+      }
+      .doc-card__toplabel{
+      margin:0 0 2mm;
+      font-size:12.5px;
+      font-weight:700;
+      color:var(--muted);
+      }
+      .doc-card__topvalue{
+      margin:0 0 3mm;
+      font-size:13.5px;
+      font-weight:800;
+      color:#0b1220;
+      }
+      .doc-card__title{
+      margin:0 0 4mm;
+      font-size:14px;
+      font-weight:800;
+      color:#0b1220;
+      }
+      .bank-summary,.qa{
+      padding-left: 6mm;
+      }
+      .bank-summary .field{
+      margin-bottom: 3mm;
+      }
+      @media print{
+      .card{ break-inside:avoid; page-break-inside:avoid; }
+      img{ break-inside:avoid; }
+      }
+      @media screen{
+      body{ background:#eef2f7; padding:12px; }
+      .sheet{
+      max-width:210mm;
+      margin:0 auto;
+      background:#fff;
+      padding:14mm;
+      box-shadow:0 10px 30px rgba(2,6,23,.12);
+      }
+      .sheet + .sheet{ margin-top: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- PAGE 1 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Detail Info</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Lead ID</div>
+              <p class="value">{{.lead_id}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama Debitur</div>
+              <p class="value">{{.personal.name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Tanggal Lead Dibuat</div>
+              <p class="value">{{.created_at}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Status</div>
+              <p class="value">{{.status}}</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Detail Debitur</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Nama Debitur</div>
+              <p class="value">{{.personal.name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK KTP Debitur</div>
+              <p class="value">{{.personal.nik}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Tempat Lahir</div>
+              <p class="value">{{.personal.birth_place}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Tanggal Lahir</div>
+              <p class="value">{{.personal.birth_date}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Telepon</div>
+              <p class="value">{{.personal.phone_number}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Telepon Tambahan</div>
+              <p class="value">{{.personal.additional_phone_number}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Email Debitur</div>
+              <p class="value">{{.personal.email}}</p>
+            </div>
+          </div>
+          <div class="divider">
+          </div>
+          <div class="stack">
+            <div class="field">
+              <div class="label">Status Pernikahan</div>
+              <p class="value">
+                {{.personal.marital_status_name}}
+              </p>
+            </div>
+            <div class="field">
+              <div class="label">Alamat KTP</div>
+              <p class="value">
+                {{.personal.legal_address}}
+              </p>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Tempat Tinggal</div>
+              <p class="value">{{.personal.domicile_address}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail Tempat Tinggal</div>
+              <p class="value">{{.personal.domicile_address_detail}}</p>
+            </div>
+          </div>
+          <div class="divider">
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Agama</div>
+              <p class="value">{{.personal.religion_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Pendidikan Terakhir</div>
+              <p class="value">{{.personal.education_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama Ibu Kandung</div>
+              <p class="value">{{.personal.mother_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Status Rumah</div>
+              <p class="value">{{.personal.home_status_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Tinggal Sejak</div>
+              <p class="value">{{.personal.stay_since_year}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Lokasi Rumah</div>
+              <p class="value">{{.personal.home_location_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Harga Rumah</div>
+              <p class="value">{{.personal.home_price}}</p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar titlebar--plain">
+            <h2 class="title">Foto KTP Debitur</h2>
+          </div>
+          <div class="photo-wrap">
+            <img class="photo" src="{{.personal.ktp_document_url}}" alt="Foto KTP Debitur" />
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Pengecekan Negative List Debitur</h2>
+          </div>
+          <div class="grid grid--3">
+            <div class="field">
+              <div class="label">Waktu Pengecekan</div>
+              <p class="value">{{.personal.negative_list.checked_at}}</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK</div>
+              <p class="value">{{.personal.nik}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Cek Negative List</div>
+              {{ if eq .personal.negative_list.result "CLEAN" }}
+              <p class="value value--ok">{{.personal.negative_list.result}}</p>
+              {{ else }}
+              <p class="value">{{.personal.negative_list.result}}</p>
+              {{ end }}
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Pengecekan Pefindo Debitur</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Waktu Pengecekan</div>
+              <p class="value">{{.personal.pefindo.checked_at}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Lead ID</div>
+              <p class="value">{{.lead_id}}</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK</div>
+              <p class="value">{{.personal.nik}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Status Pengecekan</div>
+              {{ if eq .personal.pefindo.result "FOUND" }}
+              <p class="value value--ok">{{.personal.pefindo.result}}</p>
+              {{ else }}
+              <p class="value">{{.personal.pefindo.result}}</p>
+              {{ end }}
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Detail Pekerjaan</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Pekerjaan Debitur</div>
+              <p class="value">{{.personal.occupation_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Sektor Ekonomi</div>
+              <p class="value">{{.personal.economy_sector_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Tipe Industri</div>
+              <p class="value">{{.personal.industry_type_name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Tipe NPWP</div>
+              <p class="value">{{.npwp_type_name}}</p>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="field">
+              <div class="label">Nomor NPWP</div>
+              <p class="value">{{.npwp_number}}</p>
+            </div>
+            <div class="divider">
+            </div>
+            <div class="field">
+              <div class="label">Alamat Perusahaan</div>
+              <p class="value">
+                {{.personal.company_address}}
+              </p>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail Perusahaan</div>
+              <p class="value">{{.personal.company_address_detail}}</p>
+            </div>
+          </div>
+        </section>
+        {{if .personal.spouse}}
+        <section>
+          <section class="card">
+            <div class="titlebar">
+              <h2 class="title">Detail Pasangan Debitur</h2>
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Nama Pasangan Debitur</div>
+                <p class="value">{{.personal.spouse.name}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor KTP Pasangan Debitur</div>
+                <p class="value">{{.personal.spouse.id_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Tempat Lahir Pasangan PIC</div>
+                <p class="value">{{.personal.spouse.birth_place}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Tanggal Lahir  Pasangan Debitur</div>
+                <p class="value">{{.personal.spouse.birth_date}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor Telepon Debitur</div>
+                <p class="value">{{.personal.spouse.phone_number}}</p>
+              </div>
+            </div>
+          </section>
+          <section class="card">
+            <div class="titlebar">
+              <h2 class="title">Pengecekan Negative List Pasangan  Debitur</h2>
+            </div>
+            <div class="grid grid--3">
+              <div class="field">
+                <div class="label">Waktu Pengecekan</div>
+                <p class="value">{{.personal.spouse.negative_list.checked_at}}</p>
+              </div>
+              <div class="field">
+                <div class="label">NIK</div>
+                <p class="value">{{.personal.spouse.id_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Cek Negative List</div>
+                {{ if eq .personal.spouse.negative_list.result "CLEAN" }}
+                <p class="value value--ok">{{.personal.spouse.negative_list.result}}</p>
+                {{ else }}
+                <p class="value">{{.personal.spouse.negative_list.result}}</p>
+                {{ end }}
+              </div>
+            </div>
+          </section>
+          <section class="card">
+            <div class="titlebar">
+              <h2 class="title">Pengecekan Pefindo Pasangan Debitur</h2>
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Waktu Pengecekan</div>
+                <p class="value">{{.personal.spouse.pefindo.checked_at}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Lead ID</div>
+                <p class="value">{{.lead_id}}</p>
+              </div>
+              <div class="field">
+                <div class="label">NIK</div>
+                <p class="value">{{.personal.spouse.id_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Status Pengecekan</div>
+                {{ if eq .personal.spouse.pefindo.result "FOUND" }}
+                <p class="value value--ok">{{.personal.spouse.pefindo.result}}</p>
+                {{ else }}
+                <p class="value">{{.personal.spouse.pefindo.result}}</p>
+                {{ end }}
+              </div>
+            </div>
+          </section>
+        </section>
+        {{end}}
+      </main>
+    </div>
+    <!-- PAGE 2 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <div class="titlebar">
+          <h2 class="title">Daftar Aset</h2>
+        </div>
+        <!-- Assets section -->
+        {{range $i, $asset := .assets}}
+        {{if ne $i 0 }}
+        <div class="margin-top-6">
+        </div>
+        <div class="margin-top-6">
+        </div>
+        <div class="margin-top-6">
+        </div>
+        {{end}}
+        <section>
+          <section class="card">
+            <h3 class="subhead">Aset {{ $asset.index }}</h3>
+            <div class="rule">
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Merek</div>
+                <p class="value">{{ $asset.brand_name }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Model</div>
+                <p class="value">{{ $asset.model_name }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Tipe</div>
+                <p class="value">{{ $asset.variant_name }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Tahun</div>
+                <p class="value">{{ $asset.manufacturing_year }}</p>
+              </div>
+              <div class="field">
+                <div class="label">OTR Showroom</div>
+                <p class="value">{{ $asset.showroom_otr }}</p>
+              </div>
+              <div class="field">
+                <div class="label">PL BFI</div>
+                <p class="value">{{ $asset.pl_bfi }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Cek 3 Harga</div>
+                {{ if $asset.price_comparison_average }} <p class="value"> {{ $asset.price_comparison_average }}</p>
+                {{ else }}
+                <p class="value"> - </p>
+                {{end}}
+              </div>
+            </div>
+            <!-- If Cek 3 Harga exist -->
+            {{ if $asset.price_comparisons}}
+            <div class="divider">
+            </div>
+            <div>
+              {{range $x, $price_comparison := $asset.price_comparisons}}
+              <div class="grid grid--4">
+                <div class="field">
+                  <div class="label">Sumber</div>
+                  <p class="value">{{ $price_comparison.source }}</p>
+                </div>
+                <div class="field">
+                  <div class="label">PIC Check</div>
+                  <p class="value">{{ $price_comparison.pic_check }}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Harga</div>
+                  <p class="value">{{ $price_comparison.price }}</p>
+                </div>
+                <div class="field">
+                  <div class="label">
+                  </div>
+                  <p class="value">
+                  </p>
+                </div>
+                <div class="field">
+                  <div class="label">Catatan</div>
+                  <p class="value">{{ $price_comparison.notes }}</p>
+                </div>
+              </div>
+              <div class="divider">
+              </div>
+              {{end}}
+            </div>
+            {{ end }}
+          </section>
+          <section class="card">
+            <div class="titlebar">
+              <h2 class="title">Pengecekan RAPINDO</h2>
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Waktu Pengecekan</div>
+                <p class="value">{{ $asset.rapindo.checked_at}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor Rangka</div>
+                <p class="value">{{$asset.chassis_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor Mesin</div>
+                <p class="value">{{$asset.engine_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Hasil Cek</div>
+                <p class="value">{{ $asset.rapindo.result}}</p>
+              </div>
+            </div>
+          </section>
+          <section class="card">
+            <div class="titlebar titlebar--plain">
+              <h2 class="title">Foto Stock Unit</h2>
+            </div>
+            <div class="photo-grid">
+              <img class="photo-grid__img" src="{{$asset.stock_unit_photo_1}}" alt="Foto Stock Unit 1" />
+              <img class="photo-grid__img" src="{{$asset.stock_unit_photo_2}}" alt="Foto Stock Unit 2" />
+              <img class="photo-grid__img" src="{{$asset.stock_unit_photo_3}}" alt="Foto Stock Unit 3" />
+              <img class="photo-grid__img" src="{{$asset.stock_unit_photo_4}}" alt="Foto Stock Unit 4" />
+            </div>
+          </section>
+          {{ if $asset.payment_receipt_document }}
+          <section class="card">
+            <div class="titlebar titlebar--plain">
+              <h2 class="title">Surat Keterangan Lunas</h2>
+            </div>
+            <div class="photo-wrap">
+              <img class="photo photo-grid__img--small" src="{{$asset.payment_receipt_document}}" alt="Surat Keterangan Lunas" />
+            </div>
+          </section>
+          {{end}}
+        </section>
+        {{end}}
+        <!-- End of assets -->
+      </main>
+    </div>
+    <!-- PAGE 3 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <div class="titlebar">
+          <h2 class="title">Daftar Owner</h2>
+        </div>
+        <!-- Owners -->
+        {{range $i, $owner := .owners}}
+        <section>
+          <section class="card">
+            <h3 class="subhead">Owner {{ $owner.index}}</h3>
+            <div class="rule">
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Nama (selain debitur)</div>
+                <p class="value">{{ $owner.name }}</p>
+              </div>
+              <div class="field">
+                <div class="label">NIK</div>
+                <p class="value">{{ $owner.nik }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Hubungan</div>
+                <p class="value">{{ $owner.relationship_name }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Pembagian Saham</div>
+                <p class="value">{{ $owner.share_percentage }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Jenis Kelamin</div>
+                <p class="value">{{ $owner.gender }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Jabatan</div>
+                <p class="value">{{ $owner.position_name }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Tempat Lahir</div>
+                <p class="value">{{ $owner.birth_place }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Tanggal Lahir</div>
+                <p class="value">{{ $owner.birth_date }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor Telepon</div>
+                <p class="value">{{ $owner.phone_number }}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor NPWP Perusahaan</div>
+                <p class="value">{{.npwp_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor NPWP</div>
+                <p class="value">{{$owner.npwp_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Status Pernikahan</div>
+                <p class="value">{{$owner.marital_status_name}}</p>
+              </div>
+            </div>
+            <div class="stack" style="margin-top:4mm;">
+              <div class="field">
+                <div class="label">Alamat Owner</div>
+                <p class="value">
+                  {{$owner.legal_address}}
+                </p>
+              </div>
+              <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+                <div class="field">
+                  <div class="label">RT</div>
+                  <p class="value">{{$owner.rt}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">RW</div>
+                  <p class="value">{{$owner.rw}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Kode Pos</div>
+                  <p class="value">{{$owner.postal_code}}</p>
+                </div>
+              </div>
+              <div class="field">
+                <div class="label">Alamat Detail</div>
+                <p class="value">{{$owner.address_detail}}</p>
+              </div>
+            </div>
+          </section>
+          <section class="card">
+            <div class="titlebar">
+              <h2 class="title">Pengecekan Negative List Owner {{$owner.index}}</h2>
+            </div>
+            <div class="grid grid--3">
+              <div class="field">
+                <div class="label">Waktu Pengecekan</div>
+                <p class="value">{{$owner.negative_list.checked_at}}</p>
+              </div>
+              <div class="field">
+                <div class="label">NIK</div>
+                <p class="value">{{$owner.nik}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Cek Negative List</div>
+                {{ if eq $owner.negative_list.status "CLEAN" }}
+                <p class="value value--ok">{{$owner.negative_list.status}}</p>
+                {{ else }}
+                <p class="value">{{$owner.negative_list.status}}</p>
+                {{ end }}
+              </div>
+            </div>
+          </section>
+          <section class="card">
+            <div class="titlebar">
+              <h2 class="title">Pengecekan Pefindo Owner {{$owner.index}}</h2>
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Waktu Pengecekan</div>
+                <p class="value">{{$owner.pefindo.checked_at}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Lead ID</div>
+                <p class="value">{{$.lead_id}}</p>
+              </div>
+              <div class="field">
+                <div class="label">NIK</div>
+                <p class="value">{{$owner.nik}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Status Pengecekan</div>
+                {{ if eq $owner.pefindo.status "FOUND" }}
+                <p class="value value--ok">{{$owner.pefindo.status}}</p>
+                {{ else }}
+                <p class="value">{{$owner.pefindo.status}}</p>
+                {{ end }}
+              </div>
+            </div>
+          </section>
+          <div class="divider">
+          </div>
+          <section class="card">
+            <div class="titlebar titlebar--plain">
+              <h2 class="title">Foto KTP</h2>
+            </div>
+            <div class="photo-wrap">
+              <img class="photo" src="{{$owner.ktp_photo_url}}" alt="Foto KTP" />
+            </div>
+          </section>
+        </section>
+        {{end}}
+      </main>
+    </div>
+    <!-- PAGE 4 -->
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Showroom</h2>
+          </div>
+          {{range $i, $showroom := .showrooms}}
+          <div class="row-head">
+            <h3 class="subhead" style="padding:0; margin:0;">Showroom {{$showroom.index}}</h3>
+            {{if $showroom.is_main}}<span class="badge">Main Showroom</span>{{end}}
+          </div>
+          <div class="rule">
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Jenis Showroom</div>
+              <p class="value">{{$showroom.showroom_type}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Is PKD</div>
+              <p class="value">{{$showroom.is_pkd}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Jumlah Karyawan</div>
+              <p class="value">{{$showroom.employee_count}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama Showroom</div>
+              <p class="value">{{$showroom.name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Persona Showroom</div>
+              <p class="value">{{$showroom.persona}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Lama Usaha</div>
+              <p class="value">{{$showroom.business_duration}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Kategori Showroom</div>
+              <p class="value">{{$showroom.category}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Kriteria</div>
+              <p class="value">{{$showroom.criteria}}</p>
+            </div>
+          </div>
+          <div class="stack" style="margin-top:4mm;">
+            <div class="field">
+              <div class="label">Alamat Showroom</div>
+              <p class="value">
+                {{$showroom.legal_address}}
+              </p>
+            </div>
+            <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+              <div class="field">
+                <div class="label">RT</div>
+                <p class="value">{{$showroom.rt}}</p>
+              </div>
+              <div class="field">
+                <div class="label">RW</div>
+                <p class="value">{{$showroom.rw}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Kode Pos</div>
+                <p class="value">{{$showroom.postal_code}}</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail</div>
+              <p class="value">{{$showroom.address_detail}}</p>
+            </div>
+          </div>
+        </section>
+        <div class="divider">
+        </div>
+        <section class="card">
+          <div class="photo-row-3">
+            <div class="photo-block">
+              <h3 class="photo-block__title">Foto Selfie Shoroom</h3>
+              <img class="photo-block__img" src="{{$showroom.selfie_photo_url}}" alt="Foto Selfie Showroom" />
+            </div>
+            <div class="photo-block">
+              <h3 class="photo-block__title">Foto Bengkel Showroom</h3>
+              <img class="photo-block__img" src="{{$showroom.workshop_photo_url}}" alt="Foto Bengkel Showroom" />
+            </div>
+            <div class="photo-block">
+              <h3 class="photo-block__title">Foto Showroom</h3>
+              <img class="photo-block__img" src="{{$showroom.showroom_photo_url}}" alt="Foto Showroom" />
+            </div>
+          </div>
+        </section>
+        {{end}}
+      </main>
+    </div>
+    <!-- ===================== PAGE 5 ===================== -->
+    <div class="sheet page">
+      <main>
+        <header class="doc-header">
+          <h1 class="doc-title">Data Aplikasi</h1>
+        </header>
+        <!-- Daftar Bank & Rekening -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Bank &amp; Rekening</h2>
+          </div>
+          {{range $i, $bank := .banks}}
+          <!-- Detail Bank -->
+          <section class="card" style="margin:0 0 6mm;">
+            <div class="titlebar">
+              <h2 class="title">Detail Bank {{$bank.index}}</h2>
+            </div>
+            <div class="grid grid--4">
+              <div class="field">
+                <div class="label">Nama Bank</div>
+                <p class="value">{{$bank.bank_name}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nomor Rekening</div>
+                <p class="value">{{$bank.account_number}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Nama Pemilik Rekening</div>
+                <p class="value">{{$bank.account_holder_name}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Status Rekening</div>
+                <p class="value value--ok">{{$bank.account_status}}</p>
+              </div>
+            </div>
+            {{if $bank.judol_status}}
+            <div class="stack" style="margin-top:4mm;">
+              <div class="field">
+                <div class="label">Status Judol</div>
+                <p class="value value--ok">{{$bank.judol_status}}</p>
+              </div>
+            </div>
+            {{end}}
+          </section>
+          {{if $bank.statements}}
+          <!-- Daftar Rekening Koran -->
+          <section class="card" style="margin:0;">
+            <div class="titlebar">
+              <h2 class="title">Daftar Rekening Koran</h2>
+            </div>
+            {{range $j, $statement := $bank.statements}}
+            <div class="statement-item" {{if eq $j (len $bank.statements)}}style="margin-bottom:0;"{{end}}>
+              <div class="grid grid--4" style="padding:0;">
+                <div class="field">
+                  <div class="label">Saldo Awal</div>
+                  <p class="value">{{$statement.opening_balance}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Tahun</div>
+                  <p class="value">{{$statement.year}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Bulan</div>
+                  <p class="value">{{$statement.month}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Mutasi Debit / Bulan</div>
+                  <p class="value">{{$statement.debit_mutation}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Mutasi Kredit / Bulan</div>
+                  <p class="value">{{$statement.credit_mutation}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Saldo Akhir</div>
+                  <p class="value">{{$statement.closing_balance}}</p>
+                </div>
+              </div>
+              <h3 class="statement-item__title" style="margin-top:4mm;">Bukti Rekening Koran</h3>
+              <img class="photo" src="{{$statement.statement_photo_url}}" alt="Bukti Rekening Koran {{$statement.month}}" />
+            </div>
+            {{end}}
+          </section>
+          {{end}}
+          {{if $bank.average}}
+          <!-- Average -->
+          <section class="card">
+            <div class="titlebar">
+              <h2 class="title">Average</h2>
+            </div>
+            <div class="grid grid--3">
+              <div class="field">
+                <div class="label">Average Mutasi Debit</div>
+                <p class="value">{{$bank.average.debit_mutation}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Average Mutasi Kredit</div>
+                <p class="value">{{$bank.average.credit_mutation}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Average Saldo Akhir</div>
+                <p class="value">{{$bank.average.closing_balance}}</p>
+              </div>
+            </div>
+          </section>
+          {{end}}
+          {{end}}
+        </section>
+      </main>
+      <main>
+        <!-- Ringkasan Akun Bank -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Ringkasan Akun Bank</h2>
+          </div>
+          <div class="bank-summary">
+            {{range $i, $summary := .bank_summary}}
+            <div class="bank-summary__row">
+              <div class="bank-summary__top">
+                <div class="field">
+                  <div class="label">Bank</div>
+                  <p class="value">{{$summary.bank_name}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Nomor Rekening</div>
+                  <p class="value">{{$summary.account_number}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Nama Pemilik Rekening</div>
+                  <p class="value">{{$summary.account_holder_name}}</p>
+                </div>
+                <div class="field">
+                  <div class="label">Average Mutasi Debit</div>
+                  <p class="value">{{$summary.average_debit_mutation}}</p>
+                </div>
+              </div>
+              <div class="bank-summary__bottom">
+                <div class="label">Average Mutasi Kredit</div>
+                <p class="value">{{$summary.average_credit_mutation}}</p>
+              </div>
+            </div>
+            {{end}}
+          </div>
+        </section>
+        <!-- Grand Total Average -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Grand Total Average</h2>
+          </div>
+          <div class="grid grid--3">
+            <div class="field">
+              <div class="label">Grand Total Average Mutasi Debit</div>
+              <p class="value">{{.grand_total_average.debit_mutation}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Grand Total Average Mutasi Kredit</div>
+              <p class="value">{{.grand_total_average.credit_mutation}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Grand Total Average Saldo Akhir</div>
+              <p class="value">{{.grand_total_average.closing_balance}}</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <!-- Data Plafon -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Plafon</h2>
+          </div>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="label">Request plafond amount</div>
+              <p class="value">{{.plafond.request_amount}}</p>
+            </div>
+          </div>
+        </section>
+        <!-- Background Showroom -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Background Showroom</h2>
+          </div>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="label">Sebelum Usaha Showroom</div>
+              <p class="value">{{.background_showroom.before_showroom_business}}</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Awal usaha Showroom</div>
+              <p class="value">{{.background_showroom.showroom_start}}</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Perkembangan Showroom</div>
+              <p class="value">{{.background_showroom.showroom_development}}</p>
+            </div>
+          </div>
+        </section>
+        <!-- Operational Showroom -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Operational Showroom</h2>
+          </div>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="label">Source Pembelian Stok Unit</div>
+              <p class="value">{{.operational_showroom.stock_purchase_source}}</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Quality Control pembelian stock unit</div>
+              <p class="value">{{.operational_showroom.quality_control}}</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Maintenance unit</div>
+              <p class="value">{{.operational_showroom.unit_maintenance}}</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Pemasaran unit</div>
+              <p class="value">{{.operational_showroom.unit_marketing}}</p>
+            </div>
+            <div class="qa-item">
+              <div class="label">Management &amp; Planning Stock</div>
+              <p class="value">{{.operational_showroom.management_planning_stock}}</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <!-- Daftar Kontak Darurat -->
+        {{range $i, $contact := .emergency_contacts}}
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Daftar Kontak Darurat</h2>
+          </div>
+          <div class="grid grid--4">
+            <div class="field">
+              <div class="label">Hubungan Dengan Debitur</div>
+              <p class="value">{{$contact.relationship}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nama (selain debitur)</div>
+              <p class="value">{{$contact.name}}</p>
+            </div>
+            <div class="field">
+              <div class="label">NIK Kontak Darurat</div>
+              <p class="value">{{$contact.nik}}</p>
+            </div>
+            <div class="field">
+              <div class="label">Nomor Telepon</div>
+              <p class="value">{{$contact.phone_number}}</p>
+            </div>
+          </div>
+          <div class="stack" style="margin-top:4mm;">
+            <div class="field">
+              <div class="label">Alamat Owner</div>
+              <p class="value">
+                {{$contact.legal_address}}
+              </p>
+            </div>
+            <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+              <div class="field">
+                <div class="label">RT</div>
+                <p class="value">{{$contact.rt}}</p>
+              </div>
+              <div class="field">
+                <div class="label">RW</div>
+                <p class="value">{{$contact.rw}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Kode Pos</div>
+                <p class="value">{{$contact.postal_code}}</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail</div>
+              <p class="value">{{$contact.address_detail}}</p>
+            </div>
+          </div>
+        </section>
+        {{end}}
+        <!-- Alamat Penagihan -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Alamat Penagihan</h2>
+          </div>
+          <div class="stack">
+            <div class="field">
+              <div class="label">Alamat Owner</div>
+              <p class="value">
+                {{.billing_address.legal_address}}
+              </p>
+            </div>
+            <div class="grid grid--3" style="padding:0; gap:4.5mm 10mm;">
+              <div class="field">
+                <div class="label">RT</div>
+                <p class="value">{{.billing_address.rt}}</p>
+              </div>
+              <div class="field">
+                <div class="label">RW</div>
+                <p class="value">{{.billing_address.rw}}</p>
+              </div>
+              <div class="field">
+                <div class="label">Kode Pos</div>
+                <p class="value">{{.billing_address.postal_code}}</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">Alamat Detail</div>
+              <p class="value">{{.billing_address.address_detail}}</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="sheet page">
+      <header class="doc-header">
+        <h1 class="doc-title">Data Aplikasi</h1>
+      </header>
+      <main>
+        <!-- Data Legalitas -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Legalitas</h2>
+          </div>
+          <div class="stack">
+            <div class="field">
+              <div class="label">Sumber Modal Kerja</div>
+              <p class="value">{{.legal_data.capital_source}}</p>
+            </div>
+          </div>
+          <div class="doc-grid-3" style="margin-top:6mm;">
+            <div class="doc-card">
+              <h3 class="doc-card__title">Fotocopy Kartu Keluarga</h3>
+              <img class="pdf-icon" src="{{.legal_data.family_card_document_url}}" alt="Dokumen Fotocopy Kartu Keluarga" />
+            </div>
+            <div class="doc-card">
+              <h3 class="doc-card__title">Bukti Kepemilikan Rumah / Showroom</h3>
+              <img class="pdf-icon" src="{{.legal_data.property_ownership_document_url}}" alt="Dokumen Bukti Kepemilikan Rumah / Showroom" />
+            </div>
+            <div class="doc-card">
+              <h3 class="doc-card__title">Fotocopy Izin Usaha & NPWP</h3>
+              <img class="photo" src="{{.legal_data.legal_business_license_document_url}}" alt="Izin Usaha & NPWP" />
+            </div>
+          </div>
+        </section>
+        <!-- Data Keuangan (3 Bulan Terakhir) -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Keuangan (3 Bulan Terakhir)</h2>
+          </div>
+          <div class="doc-grid-3">
+            {{range $i, $doc := .financial_documents}}
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">{{$doc.month}}</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="{{$doc.document_url}}" alt="Dokumen Keuangan {{$doc.index}}" />
+            </div>
+            {{end}}
+          </div>
+        </section>
+        <!-- Data Penjualan (3 Bulan Terakhir) -->
+        <section class="card">
+          <div class="titlebar">
+            <h2 class="title">Data Penjualan (3 Bulan Terakhir)</h2>
+          </div>
+          <div class="doc-grid-3">
+            {{range $i, $doc := .sales_documents}}
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Bulan</div>
+              <div class="doc-card__topvalue">{{$doc.month}}</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="{{$doc.document_url}}" alt="Dokumen Penjualan {{$doc.index}}" />
+            </div>
+            {{end}}
+          </div>
+        </section>
+        <!-- Dokumen Tambahan -->
+        <section class="card" style="margin-bottom:0;">
+          <div class="titlebar">
+            <h2 class="title">Dokumen Tambahan</h2>
+          </div>
+          <div class="doc-grid-3">
+            {{range $i, $doc := .additional_documents}}
+            <div class="doc-card">
+              <div class="doc-card__toplabel">Tipe</div>
+              <div class="doc-card__topvalue">{{if $doc.type}}{{$doc.type}}{{else}}&nbsp;{{end}}</div>
+              <div class="doc-card__title">Dokumen</div>
+              <img class="photo" src="{{$doc.document_url}}" alt="Dokumen Tambahan {{$doc.index}}" />
+            </div>
+            {{end}}
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

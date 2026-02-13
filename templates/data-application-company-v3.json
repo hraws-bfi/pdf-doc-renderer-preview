@@ -1,0 +1,17 @@
+{
+  "lead_id": "LD-001",
+  "company": {
+    "phone_number": "628123123123",
+    "company_name": "PT Surya Sandjaya",
+    "legal_address": "RT 001, RW 001, Karang Anyar, Sawah Besar, Jakarta Pusat, DKI Jakarta, 10740",
+    "address_detail": "Asdasdsadasd Asdasd",
+    "npwp_document_url": "https://storage.googleapis.com/sit-bucket-document-mcx7q/backoffice/npwpcard/90232a74-0451-4312-a0ee-ae990950c60a-LEAD_83093441-aa6d-4b55-aa8b-44a98404cfd2_NPWPCARD.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sit-ms-document%40bravo-project-nonprod.iam.gserviceaccount.com%2F20260211%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260211T020416Z&X-Goog-Expires=10800&X-Goog-SignedHeaders=host&X-Goog-Signature=08f7011b1f8cb8fba28bc251f271642c6e43e19a0e2281346fbccc765176cb701abad31c7bbbb19fdcf1dd5a7bb952afce619bc32ded1e8463c0134be11a8fae3ae1b8eea92b39829d1c5fedc34d5e55544e9e5ff56f54517f700303c222e21508610ef3904b3143cf5233760283ac630e6dc56d2a543fe1a1078921c07449ad7011727761f665f6d326e5b37e136942f7552683e975b076ee25b2de2612f81c4a3576c28ec8a217d1f528a52e5893c5ab66b3bb1cd5b6028a5d74cffdd8f683c69245c8cafe362e71cf8b59821993582685417f76d7cb66c11db38a33aa6f4f624dbffd33a86fae56255289248175d3b1b1e6dc6f6c57564273811d5ef111a4"
+  },
+  "npwp_number": "029904939344856",
+  "npwp_type_name": "SP-NPWP",
+  "created_at": "2026-01-15T15:10:45.086646Z",
+  "status": "Menunggu Persetujuan",
+  "industry_group_name": "Perseroan Terbatas",
+  "economy_sector_name": "INDUSTRI/MANUFACTURING",
+  "industry_name": "KENDARAAN BERMOTOR RODA EMPAT ATAU LEBIH"
+}

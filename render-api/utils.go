@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -86,28 +87,92 @@ func readTemplateFile(filename string) ([]byte, error) {
 	return os.ReadFile(filePath)
 }
 
+// isURLString checks if a string looks like a URL that should be marked as safe
+func isURLString(s string) bool {
+	return strings.HasPrefix(s, "http://") ||
+		strings.HasPrefix(s, "https://") ||
+		strings.HasPrefix(s, "data:") ||
+		strings.HasPrefix(s, "file://")
+}
+
+// sanitizeDataForTemplate recursively converts URL-like strings to template.URL
+// so they render correctly without needing explicit safeURL in templates
+func sanitizeDataForTemplate(data map[string]interface{}) map[string]interface{} {
+	result := make(map[string]interface{}, len(data))
+	for k, v := range data {
+		result[k] = sanitizeValue(v)
+	}
+	return result
+}
+
+func sanitizeValue(v interface{}) interface{} {
+	switch val := v.(type) {
+	case string:
+		if isURLString(val) {
+			return template.URL(val)
+		}
+		return val
+	case map[string]interface{}:
+		return sanitizeDataForTemplate(val)
+	case []interface{}:
+		result := make([]interface{}, len(val))
+		for i, item := range val {
+			result[i] = sanitizeValue(item)
+		}
+		return result
+	default:
+		return val
+	}
+}
+
 // generatePDF converts HTML content to PDF using headless Chrome
-func generatePDF(htmlContent string) ([]byte, error) {
-	ctx, cancel := chromedp.NewContext(context.Background())
+// waitMs specifies how long to wait (in milliseconds) for images to load after page ready
+func generatePDF(htmlContent string, waitMs int) ([]byte, error) {
+	allocOpts := append(chromedp.DefaultExecAllocatorOptions[:],
+		chromedp.Flag("disable-gpu", true),
+	)
+	if config.ChromePath != "" {
+		allocOpts = append(allocOpts, chromedp.ExecPath(config.ChromePath))
+	}
+
+	allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), allocOpts...)
+	defer cancel()
+
+	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
 	// Set a timeout for PDF generation
-	ctx, cancel = context.WithTimeout(ctx, 30*time.Second)
+	ctx, cancel = context.WithTimeout(ctx, 60*time.Second)
 	defer cancel()
+
+	// Default wait time if not specified
+	if waitMs <= 0 {
+		waitMs = 500
+	}
+
+	// Write HTML to a temporary file so Chrome can load it with external resources
+	tmpFile, err := os.CreateTemp("", "pdf-render-*.html")
+	if err != nil {
+		return nil, fmt.Errorf("failed to create temp file: %w", err)
+	}
+	tmpPath := tmpFile.Name()
+	defer os.Remove(tmpPath)
+
+	if _, err := tmpFile.WriteString(htmlContent); err != nil {
+		tmpFile.Close()
+		return nil, fmt.Errorf("failed to write temp file: %w", err)
+	}
+	tmpFile.Close()
 
 	var pdfBuf []byte
 
-	// Navigate to a data URL with the HTML content
-	// We need to use a data URL since we're rendering dynamic content
+	// Navigate to the temp file URL so Chrome can fetch external resources (images)
+	fileURL := "file://" + tmpPath
+
 	if err := chromedp.Run(ctx,
-		chromedp.Navigate("about:blank"),
-		chromedp.ActionFunc(func(ctx context.Context) error {
-			frameTree, err := page.GetFrameTree().Do(ctx)
-			if err != nil {
-				return err
-			}
-			return page.SetDocumentContent(frameTree.Frame.ID, htmlContent).Do(ctx)
-		}),
+		chromedp.Navigate(fileURL),
+		chromedp.WaitReady("body"),
+		chromedp.Sleep(time.Duration(waitMs)*time.Millisecond),
 		chromedp.ActionFunc(func(ctx context.Context) error {
 			buf, _, err := page.PrintToPDF().
 				WithPrintBackground(true).

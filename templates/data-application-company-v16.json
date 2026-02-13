@@ -1,0 +1,325 @@
+{
+  "lead_id": "LD20260204820130000543",
+  "company": {
+    "phone_number": "628123123123",
+    "company_name": "PT Surya Sandjaya",
+    "legal_address": "RT 001, RW 001, Karang Anyar, Sawah Besar, Jakarta Pusat, DKI Jakarta, 10740",
+    "address_detail": "Asdasdsadasd Asdasd",
+    "npwp_document_url": "https://storage.googleapis.com/sit-bucket-document-mcx7q/backoffice/identitycard/db4c7dfd-fe17-4b06-a80a-0c07726cb038-LEAD_20532e34-f309-4694-8422-31c55aa31584_IDENTITYCARD.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sit-ms-document%40bravo-project-nonprod.iam.gserviceaccount.com%2F20260211%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260211T112631Z&X-Goog-Expires=10800&X-Goog-SignedHeaders=host&X-Goog-Signature=4b15ed0237f7d6a376c5d7c5126cc90faa77da4c38ec2d074f0dcbdbd10acdd22fad6bf9a211f62c342a5c01cd9fc0b1fcd4df025b052beca8e6d0dc8b8105441d6a888184f0343138e74ba91a7ce5a4b748fcc4e75405675720f0147d8d551945ac7c492b9ef41d138084afb7637b5362c7ce4a36fd62eea264226252774d2ba43b8eea046ca854ed9ae6eec733c462e3b21fd51f9cabb9793c2eeeee608536e24578051b47ded0a798e34d84a65ae8192b297dd2672f7be0fd5eefff0a8d3baf067e2e69e987efa5fc9eebfd57f744df659544d3d6df569ac8568e5ee8e283a4eea8e6f53ae178d20623a95e965fa4f4ccb49e8776c64ded7d6e851985a0b3",
+    "pic": {
+      "name": "Ignacio Ferry",
+      "email": "testing@gmail.com",
+      "phone_number": "62811110151050",
+      "position_name": "Manager",
+      "id_number": "6644435402911705",
+      "birth_place": "BLITAR",
+      "birth_date": "1 Februari 1987",
+      "gender": "Laki-laki",
+      "marital_status": "Belum Kawin",
+      "negative_list": {
+        "checked_at": "10 Februari 2026",
+        "result": "Tidak Clean"
+      },
+      "pefindo": {
+        "checked_at": "10 Februari 2026",
+        "result": "Clean"
+      },
+      "spouse": {
+        "name": "Jonathan Debis",
+        "id_number": "312029920112910",
+        "birth_place": "Jakarta",
+        "birth_date": "17 Mei 1978",
+        "phone_number": "08131223456",
+        "negative_list": {
+          "checked_at": "10 Februari 2026",
+          "result": "Clean"
+        },
+        "pefindo": {
+          "checked_at": "10 Februari 2026",
+          "result": "Clean"
+        }
+      }
+    }
+  },
+  "npwp_number": "029904939344856",
+  "npwp_type_name": "SP-NPWP",
+  "created_at": "10 Februari 2026",
+  "status": "Menunggu Persetujuan",
+  "industry_group_name": "Perseroan Terbatas",
+  "economy_sector_name": "INDUSTRI/MANUFACTURING",
+  "industry_name": "KENDARAAN BERMOTOR RODA EMPAT ATAU LEBIH",
+  "assets": [
+    {
+      "index": 1,
+      "brand_name": "DAIHATSU",
+      "model_name": "AYLA",
+      "variant_code": "DAIHATSU.AYLA.D10AT",
+      "variant_name": "D 1.0 AT",
+      "manufacturing_year": 2019,
+      "showroom_otr": "Rp 80.000.000",
+      "pl_bfi": "Rp 78.000.000",
+      "chassis_number": "MHFXW1820FK123456",
+      "engine_number": "K20C1234567",
+      "price_comparison_average": "Rp 78.000.000",
+      "price_comparisons": [
+        {
+          "notes": "Tidak Ada",
+          "source": "Cek",
+          "pic_check": "RUSMIN",
+          "price": "Rp 80.000.000"
+        },
+        {
+          "notes": "Tidak Ada",
+          "source": "Cek",
+          "pic_check": "RUSMIN",
+          "price": "Rp 80.000.000"
+        },
+        {
+          "notes": "Tidak Ada",
+          "source": "Cek",
+          "pic_check": "RUSMIN",
+          "price": "Rp 80.000.000"
+        }
+      ],
+      "rapindo": {
+        "result": "Tidak Digunakan Sebagai Jaminan",
+        "checked_at": "10 Februari 2026"
+      },
+      "stock_unit_photo_1": "https://placehold.co/380x240?text=Stock-Unit-1",
+      "stock_unit_photo_2": "https://placehold.co/380x240?text=Stock-Unit-2",
+      "stock_unit_photo_3": "https://placehold.co/380x240?text=Stock-Unit-3",
+      "stock_unit_photo_4": "https://placehold.co/380x240?text=Stock-Unit-4",
+      "payment_receipt_document": "https://placehold.co/380x240?text=Surat-Keterangan-Lunas"
+    },
+    {
+      "index": 2,
+      "brand_name": "DAIHATSU",
+      "model_name": "AYLA",
+      "variant_code": "DAIHATSU.AYLA.D10AT",
+      "variant_name": "D 1.0 AT",
+      "manufacturing_year": 2019,
+      "showroom_otr": "Rp 80.000.000",
+      "pl_bfi": "Rp 70.000.000",
+      "chassis_number": "MHFXW1820FK123456",
+      "engine_number": "K20C1234567",
+      "rapindo": {
+        "result": "Aktif Sebagai Jaminan",
+        "checked_at": "10 Februari 2026"
+      },
+      "stock_unit_photo_1": "https://placehold.co/380x240?text=Stock-Unit-1",
+      "stock_unit_photo_2": "https://placehold.co/380x240?text=Stock-Unit-2",
+      "stock_unit_photo_3": "https://placehold.co/380x240?text=Stock-Unit-3",
+      "stock_unit_photo_4": "https://placehold.co/380x240?text=Stock-Unit-4"
+    }
+  ],
+  "owners": [
+    {
+      "index": 1,
+      "name": "ZETTA NIENOW",
+      "nik": "1671076103800007",
+      "position_name": "Owner",
+      "phone_number": "6281284907886",
+      "relationship_name": "Teman",
+      "share_percentage": "10%",
+      "gender": "Laki - Laki",
+      "birth_date": "1999-02-01",
+      "birth_place": "Jakarta",
+      "npwp_number": "1671076103800007",
+      "marital_status_name": "Belum Menikah",
+      "legal_address": "Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2, Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322",
+      "rt": "003",
+      "rw": "015",
+      "postal_code": "16963",
+      "address_detail": "Jalan Utama",
+      "ktp_photo_url": "https://placehold.co/380x240?text=Foto+KTP",
+      "negative_list": {
+        "checked_at": "10 Februari 2026",
+        "status": "Clean"
+      },
+      "pefindo": {
+        "checked_at": "10 Februari 2026",
+        "status": "Clean"
+      }
+    }
+  ],
+  "showrooms": [
+    {
+      "index": 1,
+      "name": "Moladin",
+      "is_main": true,
+      "showroom_type": "Perorangan",
+      "is_pkd": "Yes",
+      "employee_count": 10,
+      "persona": "Persona 1",
+      "business_duration": "18 Bulan",
+      "category": "Silver",
+      "criteria": "Sobat Potency",
+      "legal_address": "Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2, Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322",
+      "rt": "003",
+      "rw": "003",
+      "postal_code": "16963",
+      "address_detail": "Jalan Utama",
+      "selfie_photo_url": "https://placehold.co/380x240?text=Foto+Selfie+Showroom",
+      "workshop_photo_url": "https://placehold.co/380x240?text=Foto+Bengkel+Showroom",
+      "showroom_photo_url": "https://placehold.co/380x240?text=Foto+Showroom"
+    }
+  ],
+  "banks": [
+    {
+      "index": 1,
+      "bank_name": "BCA",
+      "account_number": "1234567",
+      "account_holder_name": "Zaire Schleifer",
+      "account_status": "Akun Bank tervalidasi",
+      "judol_status": "No Rekening ini tidak tercatat sebagai judi online",
+      "statements": [
+        {
+          "index": 1,
+          "opening_balance": "Rp 950,000,000",
+          "year": "2024",
+          "month": "Januari",
+          "debit_mutation": "Rp 200,000,000",
+          "credit_mutation": "Rp 200,000,000",
+          "closing_balance": "Rp 550,000,000",
+          "statement_photo_url": "https://placehold.co/380x240?text=Bukti+Rekening+Koran"
+        },
+        {
+          "index": 2,
+          "opening_balance": "Rp 950,000,000",
+          "year": "2024",
+          "month": "Februari",
+          "debit_mutation": "Rp 200,000,000",
+          "credit_mutation": "Rp 200,000,000",
+          "closing_balance": "Rp 550,000,000",
+          "statement_photo_url": "https://placehold.co/380x240?text=Bukti+Rekening+Koran"
+        }
+      ],
+      "average": {
+        "debit_mutation": "Rp 400,000,000",
+        "credit_mutation": "Rp 400,000,000",
+        "closing_balance": "Rp 1.100,000,000"
+      }
+    },
+    {
+      "index": 2,
+      "bank_name": "-",
+      "account_number": "-",
+      "account_holder_name": "-",
+      "account_status": "-"
+    }
+  ],
+  "bank_summary": [
+    {
+      "bank_name": "BCA",
+      "account_number": "1234567",
+      "account_holder_name": "Zaire Schleifer",
+      "average_debit_mutation": "Rp 200,000,000",
+      "average_credit_mutation": "Rp 200,000,000"
+    },
+    {
+      "bank_name": "Mandiri",
+      "account_number": "9876545678",
+      "account_holder_name": "Jaydon Mango",
+      "average_debit_mutation": "Rp 200,000,000",
+      "average_credit_mutation": "Rp 200,000,000"
+    }
+  ],
+  "grand_total_average": {
+    "debit_mutation": "Rp 200,000,000",
+    "credit_mutation": "Rp 200,000,000",
+    "closing_balance": "Rp 200,000,000"
+  },
+  "plafond": {
+    "request_amount": "Rp 100.000.000"
+  },
+  "background_showroom": {
+    "before_showroom_business": "Saya bekerja sebagai pegawai",
+    "showroom_start": "Saya punya 2 mobil untuk di jual",
+    "showroom_development": "2022 saya sewa ruko"
+  },
+  "operational_showroom": {
+    "stock_purchase_source": "OLX",
+    "quality_control": "OLX",
+    "unit_maintenance": "Setahun Sekali",
+    "unit_marketing": "Online",
+    "management_planning_stock": "Saya punya 5 buah"
+  },
+  "emergency_contacts": [
+    {
+      "index": 1,
+      "relationship": "Orang Tua",
+      "name": "Charlie Vaccaro",
+      "nik": "128453467834",
+      "phone_number": "+62 724242 1234",
+      "legal_address": "Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2, Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322",
+      "rt": "003",
+      "rw": "003",
+      "postal_code": "16963",
+      "address_detail": "Jalan Utama"
+    }
+  ],
+  "billing_address": {
+    "legal_address": "Jl. Sunburst CBD Jl. Kapten Soebijanto Dojojohadikusumo No.Lot. 1, RW.2, Lengkong Gudang, Kec. Serpong, Kota Tangerang Selatan, Banten 15322",
+    "rt": "003",
+    "rw": "003",
+    "postal_code": "16963",
+    "address_detail": "Jalan Utama"
+  },
+  "legal_data": {
+    "capital_source": "BFI: 600000000",
+    "establishment_deed_document_url": "https://placehold.co/180x180?text=PDF",
+    "rups_approval_document_url": "https://placehold.co/180x180?text=PDF",
+    "minister_approval_document_url": "https://placehold.co/380x240?text=Dokumen"
+  },
+  "financial_documents": [
+    {
+      "index": 1,
+      "month": "January",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+Keuangan"
+    },
+    {
+      "index": 2,
+      "month": "January",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+Keuangan"
+    },
+    {
+      "index": 3,
+      "month": "January",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+Keuangan"
+    }
+  ],
+  "sales_documents": [
+    {
+      "index": 1,
+      "month": "January",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+Penjualan"
+    },
+    {
+      "index": 2,
+      "month": "January",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+Penjualan"
+    },
+    {
+      "index": 3,
+      "month": "January",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+Penjualan"
+    }
+  ],
+  "additional_documents": [
+    {
+      "index": 1,
+      "type": "KTP",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+NPWP"
+    },
+    {
+      "index": 2,
+      "type": "NPWP",
+      "document_url": "https://placehold.co/380x240?text=Dokumen+NPWP"
+    },
+    {
+      "index": 3,
+      "type": "",
+      "document_url": "https://placehold.co/380x240?text=Dokumen"
+    }
+  ]
+}

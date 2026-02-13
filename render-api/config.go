@@ -13,6 +13,7 @@ type Config struct {
 	AllowedOrigins []string
 	TemplatesDir   string
 	ServerAddr     string
+	ChromePath     string
 	DMS            DMSConfig
 }
 
@@ -58,6 +59,15 @@ func loadConfig() {
 	// Load DMS configuration
 	config.DMS.APIURL = os.Getenv("DMS_API_URL")
 	config.DMS.APISecret = os.Getenv("DMS_API_SECRET")
+
+	// Load Chrome/Chromium executable path
+	config.ChromePath = os.Getenv("CHROME_PATH")
+	if config.ChromePath == "" {
+		config.ChromePath = os.Getenv("CHROMEDP_EXEC_PATH")
+	}
+	if config.ChromePath != "" {
+		log.Printf("using chrome binary: %s", config.ChromePath)
+	}
 	if config.DMS.APIURL != "" {
 		log.Printf("DMS API configured: %s", config.DMS.APIURL)
 	} else {

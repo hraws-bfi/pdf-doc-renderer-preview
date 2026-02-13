@@ -51,9 +51,10 @@ type UploadDMSRequest struct {
 
 // PDFRequest represents a PDF generation request
 type PDFRequest struct {
-	Template string                 `json:"template"`
-	Data     map[string]interface{} `json:"data"`
-	Filename string                 `json:"filename,omitempty"` // optional filename for download
+	Template      string                 `json:"template"`
+	Data          map[string]interface{} `json:"data"`
+	Filename      string                 `json:"filename,omitempty"`        // optional filename for download
+	WaitAfterLoad int                    `json:"wait_after_load,omitempty"` // milliseconds to wait for images to load (default: 500)
 }
 
 // UploadDMSResponse represents a DMS upload response

@@ -1,0 +1,63 @@
+{
+  "lead_id": "LD-001",
+  "company": {
+    "phone_number": "628123123123",
+    "company_name": "PT Surya Sandjaya",
+    "legal_address": "RT 001, RW 001, Karang Anyar, Sawah Besar, Jakarta Pusat, DKI Jakarta, 10740",
+    "address_detail": "Asdasdsadasd Asdasd",
+    "npwp_document_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+    "pic": {
+      "name": "Ignacio Ferry",
+      "email": "testing@gmail.com",
+      "phone_number": "62811110151050",
+      "position_name": "Manager",
+      "id_number": "6644435402911705",
+      "birth_place": "BLITAR",
+      "birth_date": "2026-01-25",
+      "gender": "Laki-laki",
+      "marital_status": "S"
+    }
+  },
+  "npwp_number": "029904939344856",
+  "npwp_type_name": "SP-NPWP",
+  "created_at": "2026-01-15T15:10:45.086646Z",
+  "status": "Menunggu Persetujuan",
+  "industry_group_name": "Perseroan Terbatas",
+  "economy_sector_name": "INDUSTRI/MANUFACTURING",
+  "industry_name": "KENDARAAN BERMOTOR RODA EMPAT ATAU LEBIH",
+  "credit_checking": {
+    "checked_at": "2026-02-10T02:15:01Z",
+    "negative": {
+      "pic": {
+        "status": "Clean"
+      }
+    },
+    "pefindo": {
+      "pic": {
+        "status": "Clean"
+      }
+    }
+  },
+  "assets": [
+    {
+      "index": 1,
+      "brand_name": "DAIHATSU",
+      "model_name": "AYLA",
+      "variant_code": "DAIHATSU.AYLA.D10AT",
+      "variant_name": "D 1.0 AT",
+      "manufacturing_year": 2019,
+      "showroom_otr": 80000000,
+      "pl_bfi": 78000000
+    },
+    {
+      "index": 2,
+      "brand_name": "DAIHATSU",
+      "model_name": "AYLA",
+      "variant_code": "DAIHATSU.AYLA.D10AT",
+      "variant_name": "D 1.0 AT",
+      "manufacturing_year": 2019,
+      "showroom_otr": 80000000,
+      "pl_bfi": 78000000
+    }
+  ]
+}
